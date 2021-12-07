@@ -68,3 +68,14 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/d
 ### `yarn build` fails to minify
 
 This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+
+### Tech Stack 
+
+- ReactJS;
+- TypeScript ( static typization for JavaScript );
+- React Testing Library ( testing components );
+- Redux ( storing data on client side );
+- Redux-Thunk ( async actions in Redux );
+- React Router ( routes without website reload );
+- Axios ( AJAX-requests );
+- json-server ( storing pizzas on 'fake' server );
