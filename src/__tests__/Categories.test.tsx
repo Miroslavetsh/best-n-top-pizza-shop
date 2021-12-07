@@ -3,7 +3,7 @@ import { Categories } from '../components'
 import { ICategory } from '../components/Category'
 
 describe('Categories component', () => {
-  const phraseIfNoCategories = 'Нет параметров сортировки'
+  const phraseIfNoCategories = 'Нет категорий для отображения'
   const itemsEmpty: Array<ICategory> = [
     /** @param {name: '', text: ''} */
   ]
