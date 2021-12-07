@@ -26,7 +26,7 @@ const SortPopup: React.FC<SortParametersProps> = (props): JSX.Element => {
         closePopup()
       }
     })
-  }, [])
+  }, [isOpen])
 
   return (
     <div className='sort' ref={sortRef}>
