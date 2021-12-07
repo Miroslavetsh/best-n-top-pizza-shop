@@ -6,11 +6,11 @@ export enum ISortParameter {
   alphabet = 'алфавиту',
 }
 
-interface SortParametersProps {
+interface SortPopupPropsTypes {
   items: Array<ISortParameter>
 }
 
-const SortPopup: React.FC<SortParametersProps> = (props): JSX.Element => {
+const SortPopup: React.FC<SortPopupPropsTypes> = (props): JSX.Element => {
   const { items } = props
   const [isOpen, setIsOpen] = useState<boolean>(false)
   const [activeParameterIndex, setActiveParameterIndex] = useState<number>(0)

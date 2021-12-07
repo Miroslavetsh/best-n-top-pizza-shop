@@ -1,11 +1,11 @@
 import { useState } from 'react'
 import Category, { ICategory } from './Category'
 
-interface CategoriesProps {
+interface CategoriesPropsTypes {
   items: Array<ICategory>
 }
 
-const Categories: React.FC<CategoriesProps> = (props): JSX.Element => {
+const Categories: React.FC<CategoriesPropsTypes> = (props): JSX.Element => {
   const { items } = props
   const [activeCategory, setActiveCategory] = useState<string>('all')
 
