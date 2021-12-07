@@ -1,9 +1,11 @@
 import { render, screen } from '@testing-library/react'
+
 import { Categories } from '../components'
 import { ICategory } from '../components/Category'
 
 describe('Categories component', () => {
   const phraseIfNoCategories = 'Нет категорий для отображения'
+
   const itemsEmpty: Array<ICategory> = [
     /** @param {name: '', text: ''} */
   ]
