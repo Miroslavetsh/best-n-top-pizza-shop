@@ -1,5 +1,5 @@
 interface ButtonProps {
-  href: string
+  href?: string
   className: string
   onClick?: () => void
   children?: React.ReactNode
@@ -11,7 +11,13 @@ const Button: React.FC<ButtonProps> = (props): JSX.Element => {
 
   const classNames = ['button', className]
   outline && classNames.push('button--outline')
-
+  if (href === '') {
+    return (
+      <span onClick={onClick} className={classNames.join(' ')}>
+        {children}
+      </span>
+    )
+  }
   return (
     <a href={href} onClick={onClick} className={classNames.join(' ')}>
       {children}
@@ -20,6 +26,7 @@ const Button: React.FC<ButtonProps> = (props): JSX.Element => {
 }
 
 Button.defaultProps = {
+  href: '',
   outline: false,
   className: '',
   onClick: () => {},
