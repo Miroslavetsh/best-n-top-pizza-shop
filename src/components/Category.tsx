@@ -4,21 +4,21 @@ export interface ICategory {
 }
 
 interface CategoryProps {
-  category: ICategory
+  item: ICategory
   activeCategory: string
   setActiveCategory: (category: string) => void
 }
 
 const Category: React.FC<CategoryProps> = (props): JSX.Element => {
-  const { category, activeCategory, setActiveCategory } = props
+  const { item, activeCategory, setActiveCategory } = props
 
   return (
     <li
       onClick={() => {
-        setActiveCategory(category.name)
+        setActiveCategory(item.name)
       }}
-      className={activeCategory === category.name ? 'active' : ''}>
-      {category.text}
+      className={activeCategory === item.name ? 'active' : ''}>
+      {item.text}
     </li>
   )
 }

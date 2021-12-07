@@ -12,12 +12,12 @@ const Categories: React.FC<CategoriesProps> = (props): JSX.Element => {
   return (
     <div className='categories'>
       <ul>
-        {items.map((category) => (
+        {items.map((item) => (
           <Category
-            key={category.name}
+            key={item.name}
             activeCategory={activeCategory}
             setActiveCategory={setActiveCategory}
-            category={category}
+            item={item}
           />
         ))}
       </ul>
