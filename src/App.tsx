@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react'
 import { Route } from 'react-router-dom'
+import axios from 'axios'
 
 import { Header } from './components'
 import { Home, Cart } from './pages'
@@ -10,8 +11,8 @@ const App: React.FC = (): JSX.Element => {
 
   useEffect(() => {
     const getPizzas = async () => {
-      const response = await fetch('/db.json')
-      const { pizzas } = await response.json()
+      const response = await axios.get('/db.json')
+      const { pizzas } = response.data
 
       setPizzas(pizzas)
     }
