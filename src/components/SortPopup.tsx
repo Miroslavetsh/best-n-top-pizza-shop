@@ -32,6 +32,7 @@ const SortPopup: React.FC<SortParametersProps> = (props): JSX.Element => {
     <div className='sort' ref={sortRef}>
       <div className='sort__label'>
         <svg
+          className={isOpen ? 'rotated' : ''}
           width='10'
           height='6'
           viewBox='0 0 10 6'
@@ -43,9 +44,12 @@ const SortPopup: React.FC<SortParametersProps> = (props): JSX.Element => {
           />
         </svg>
 
-        <b>Сортировка по:</b>
-
-        <span onClick={togglePopupVisibility}>{items[activeParameterIndex]}</span>
+        {items.length ? (
+          <>
+            <b>Сортировка по:</b>
+            <span onClick={togglePopupVisibility}>{items[activeParameterIndex]}</span>
+          </>
+        ) : 'Нет параметров сортировки'}
       </div>
 
       {isOpen && (
