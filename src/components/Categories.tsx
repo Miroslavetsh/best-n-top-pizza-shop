@@ -12,14 +12,16 @@ const Categories: React.FC<CategoriesProps> = (props): JSX.Element => {
   return (
     <div className='categories'>
       <ul>
-        {items.map((item) => (
-          <Category
-            key={item.name}
-            activeCategory={activeCategory}
-            setActiveCategory={setActiveCategory}
-            item={item}
-          />
-        ))}
+        {(items.length &&
+          items.map((item) => (
+            <Category
+              key={item.name}
+              activeCategory={activeCategory}
+              setActiveCategory={setActiveCategory}
+              item={item}
+            />
+          ))) ||
+          'No categories here'}
       </ul>
     </div>
   )
