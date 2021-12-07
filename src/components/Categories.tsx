@@ -21,7 +21,7 @@ const Categories: React.FC<CategoriesProps> = (props): JSX.Element => {
               item={item}
             />
           ))) ||
-          'No categories here'}
+          'Нет категорий для отображения'}
       </ul>
     </div>
   )
