@@ -9,8 +9,8 @@ const App: React.FC = (): JSX.Element => {
       <Header />
 
       <div className='content'>
-        <Route path='/' exact component={Home} />
-        <Route path='/cart' exact component={Cart} />
+        <Route exact path='/' component={Home} />
+        <Route exact path='/cart' component={Cart} />
       </div>
     </div>
   )
