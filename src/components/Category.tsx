@@ -3,13 +3,13 @@ export interface ICategory {
   text: string
 }
 
-interface CategoryProps {
+interface CategoryPropsTypes {
   item: ICategory
   activeCategory: string
   setActiveCategory: (category: string) => void
 }
 
-const Category: React.FC<CategoryProps> = (props): JSX.Element => {
+const Category: React.FC<CategoryPropsTypes> = (props): JSX.Element => {
   const { item, activeCategory, setActiveCategory } = props
 
   return (
