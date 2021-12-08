@@ -1,13 +1,13 @@
 import { useEffect, useRef, useState } from 'react'
 
-export enum ISortParameter {
+export enum SortParameter {
   popularity = 'популярности',
   price = 'цене',
   alphabet = 'алфавиту',
 }
 
 interface SortPopupPropsTypes {
-  items: Array<ISortParameter>
+  items: Array<SortParameter>
 }
 
 const SortPopup: React.FC<SortPopupPropsTypes> = (props): JSX.Element => {

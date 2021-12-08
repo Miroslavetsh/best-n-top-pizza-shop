@@ -7,7 +7,7 @@ interface CategoriesPropsTypes {
 
 const Categories: React.FC<CategoriesPropsTypes> = (props): JSX.Element => {
   const { items } = props
-  const [activeCategory, setActiveCategory] = useState<string>('all')
+  const [activeCategory, setActiveCategory] = useState<string>(items[0].name)
 
   return (
     <div className='categories'>

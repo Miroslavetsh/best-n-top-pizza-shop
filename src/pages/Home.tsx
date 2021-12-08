@@ -1,6 +1,6 @@
 import { Categories, SortPopup, PizzaBlock } from '../components'
 import { ICategory } from '../components/Category'
-import { ISortParameter } from '../components/SortPopup'
+import { SortParameter } from '../components/SortPopup'
 import Pizza from '../models/Pizza'
 
 interface HomePropsTypes {
@@ -19,10 +19,10 @@ const Home: React.FC<HomePropsTypes> = (props): JSX.Element => {
     { name: 'closed', text: 'Закрытые' },
   ]
 
-  const sortParameters: Array<ISortParameter> = [
-    ISortParameter.popularity,
-    ISortParameter.price,
-    ISortParameter.alphabet,
+  const sortParameters: Array<SortParameter> = [
+    SortParameter.popularity,
+    SortParameter.price,
+    SortParameter.alphabet,
   ]
   return (
     <div className='container'>
