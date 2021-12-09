@@ -2,6 +2,11 @@ import { useEffect } from 'react'
 import { Route } from 'react-router-dom'
 import axios from 'axios'
 
+import { connect } from 'react-redux'
+
+import { RootState } from './redux/store'
+import { setPizza } from './redux/actions/pizza'
+
 import { Header } from './components'
 import { Home, Cart } from './pages'
 import Pizza from './models/Pizza'
@@ -35,4 +40,9 @@ const App: React.FC<AppPropTypes> = ({ items, setPizza }) => {
   )
 }
 
-export default App
+const mapStateToProps = (state: RootState) => ({ items: state.pizza.items })
+const mapDispatchToProps = {
+  setPizza,
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(App)
