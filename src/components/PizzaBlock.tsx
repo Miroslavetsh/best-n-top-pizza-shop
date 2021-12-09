@@ -49,11 +49,14 @@ const PizzaBlock: React.FC<PizzaBlockPropsTypes> = (props): JSX.Element => {
               classNames.push('active')
             }
 
+            const chooseDoughType = (idx: number) => {
+              return () => {
+                selectPizzaDoughType(idx)
+              }
+            }
+
             return (
-              <li
-                className={classNames.join(' ')}
-                onClick={() => selectPizzaDoughType(idx)}
-                key={type}>
+              <li className={classNames.join(' ')} onClick={chooseDoughType(idx)} key={type}>
                 {type}
               </li>
             )
@@ -68,8 +71,14 @@ const PizzaBlock: React.FC<PizzaBlockPropsTypes> = (props): JSX.Element => {
               classNames.push('active')
             }
 
+            const chooseSize = (idx: number) => {
+              return () => {
+                selectPizzaSize(idx)
+              }
+            }
+
             return (
-              <li className={classNames.join(' ')} onClick={() => selectPizzaSize(idx)} key={size}>
+              <li className={classNames.join(' ')} onClick={chooseSize(idx)} key={size}>
                 {size}
               </li>
             )

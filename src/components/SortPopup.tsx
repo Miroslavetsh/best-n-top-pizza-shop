@@ -18,11 +18,18 @@ const SortPopup: React.FC<SortPopupPropsTypes> = (props): JSX.Element => {
   const sortRef = useRef<HTMLDivElement>(document.createElement('div'))
 
   useEffect(() => {
-    document.body.addEventListener('click', (event: MouseEvent) => {
+    const listener = (event: MouseEvent) => {
       if (!event?.composedPath().includes(sortRef.current) && isOpen) {
         closePopup()
       }
-    })
+    }
+
+    document.body.addEventListener('click', listener)
+
+    // Component Will Unmount
+    return () => {
+      document.removeEventListener('click', listener)
+    }
   }, [isOpen])
 
   const togglePopupVisibility = () => setIsOpen(!isOpen)
