@@ -11,12 +11,12 @@ const Home: React.FC<HomePropsTypes> = (props): JSX.Element => {
   const { pizzas } = props
 
   const categories: Array<ICategory> = [
-    { name: 'all', text: 'Все' },
-    { name: 'meat', text: 'Мясные' },
-    { name: 'vegan', text: 'Вегетерианские' },
-    { name: 'grill', text: 'Гриль' },
-    { name: 'spice', text: 'Острые' },
-    { name: 'closed', text: 'Закрытые' },
+    { id: 0, name: 'all', text: 'Все' },
+    { id: 1, name: 'meat', text: 'Мясные' },
+    { id: 2, name: 'vegan', text: 'Вегетерианские' },
+    { id: 3, name: 'grill', text: 'Гриль' },
+    { id: 4, name: 'spice', text: 'Острые' },
+    { id: 5, name: 'closed', text: 'Закрытые' },
   ]
 
   const sortParameters: Array<SortParameter> = [
