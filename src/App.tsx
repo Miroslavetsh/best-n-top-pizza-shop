@@ -21,6 +21,7 @@ const App: React.FC = () => {
   }
 
   useEffect(() => {
+    // TODO: move to redux with redux-thunk
     const getPizzas = async () => {
       const response = await axios.get('/db.json')
       const { pizzas } = response.data
