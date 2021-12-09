@@ -16,7 +16,7 @@ export interface RootState {
 
 const store = createStore(
   rootReducer,
-  // @ts-ignore
+  // @ts-ignore Redux Tools for development
   window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__(),
 )
 

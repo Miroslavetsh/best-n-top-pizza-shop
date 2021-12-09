@@ -1,5 +1,5 @@
 import { AnyAction } from 'redux'
-import { availableAction } from '../constants'
+import { availableAction } from '../../constants'
 
 const initialState = {
   items: [],

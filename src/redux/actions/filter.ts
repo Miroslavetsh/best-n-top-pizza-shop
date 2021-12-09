@@ -1,5 +1,4 @@
-import { availableAction } from '../constants'
-import { ICategory } from '../../components/Category'
+import { availableAction } from '../../constants'
 import { SortParameter } from '../../components/SortPopup'
 
 export const setSortBy = (payload: SortParameter) => ({
@@ -7,7 +6,7 @@ export const setSortBy = (payload: SortParameter) => ({
   payload,
 })
 
-export const setCategory = (payload: ICategory) => ({
+export const setCategory = (payload: number) => ({
   type: availableAction.SET_CATEGORY,
   payload,
 })

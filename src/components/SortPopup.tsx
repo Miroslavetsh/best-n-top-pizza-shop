@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 
 export enum SortParameter {
   popularity = 'популярности',
@@ -10,7 +10,7 @@ interface SortPopupPropsTypes {
   items: Array<SortParameter>
 }
 
-const SortPopup: React.FC<SortPopupPropsTypes> = (props): JSX.Element => {
+const SortPopup: React.FC<SortPopupPropsTypes> = React.memo((props): JSX.Element => {
   const { items } = props
   const [isOpen, setIsOpen] = useState<boolean>(false)
   const [activeParameterIndex, setActiveParameterIndex] = useState<number>(0)
@@ -85,6 +85,6 @@ const SortPopup: React.FC<SortPopupPropsTypes> = (props): JSX.Element => {
       )}
     </div>
   )
-}
+})
 
 export default SortPopup
