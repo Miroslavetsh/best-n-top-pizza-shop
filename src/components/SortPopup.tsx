@@ -17,9 +17,6 @@ const SortPopup: React.FC<SortPopupPropsTypes> = (props): JSX.Element => {
 
   const sortRef = useRef<HTMLDivElement>(document.createElement('div'))
 
-  const togglePopupVisibility = () => setIsOpen(!isOpen)
-  const closePopup = () => setIsOpen(false)
-
   useEffect(() => {
     document.body.addEventListener('click', (event: MouseEvent) => {
       if (!event?.composedPath().includes(sortRef.current) && isOpen) {
@@ -27,6 +24,15 @@ const SortPopup: React.FC<SortPopupPropsTypes> = (props): JSX.Element => {
       }
     })
   }, [isOpen])
+
+  const togglePopupVisibility = () => setIsOpen(!isOpen)
+  const closePopup = () => setIsOpen(false)
+  const handleParameterClick = (idx: number) => {
+    return () => {
+      setActiveParameterIndex(idx)
+      closePopup()
+    }
+  }
 
   return (
     <div className='sort' ref={sortRef}>
@@ -49,7 +55,9 @@ const SortPopup: React.FC<SortPopupPropsTypes> = (props): JSX.Element => {
             <b>Сортировка по:</b>
             <span onClick={togglePopupVisibility}>{items[activeParameterIndex]}</span>
           </>
-        ) : 'Нет параметров сортировки'}
+        ) : (
+          'Нет параметров сортировки'
+        )}
       </div>
 
       {isOpen && (
@@ -60,10 +68,7 @@ const SortPopup: React.FC<SortPopupPropsTypes> = (props): JSX.Element => {
                 <li
                   key={parameter}
                   className={activeParameterIndex === idx ? 'active' : ''}
-                  onClick={() => {
-                    setActiveParameterIndex(idx)
-                    closePopup()
-                  }}>
+                  onClick={handleParameterClick(idx)}>
                   {items[idx]}
                 </li>
               )
