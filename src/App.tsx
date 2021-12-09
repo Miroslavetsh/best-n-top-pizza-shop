@@ -22,8 +22,8 @@ const App: React.FC = () => {
 
   useEffect(() => {
     const getPizzas = async () => {
-      const response = await axios.get('/db.json')
-      const { pizzas } = response.data
+      const response = await axios.get('http://localhost:80/pizzas')
+      const pizzas = response.data
 
       dispatch(setPizza(pizzas))
     }
