@@ -1,32 +1,45 @@
-import { useEffect, useRef, useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 
-export enum ISortParameter {
+export enum SortParameter {
   popularity = 'популярности',
   price = 'цене',
   alphabet = 'алфавиту',
 }
 
 interface SortPopupPropsTypes {
-  items: Array<ISortParameter>
+  items: Array<SortParameter>
 }
 
-const SortPopup: React.FC<SortPopupPropsTypes> = (props): JSX.Element => {
+const SortPopup: React.FC<SortPopupPropsTypes> = React.memo((props): JSX.Element => {
   const { items } = props
   const [isOpen, setIsOpen] = useState<boolean>(false)
   const [activeParameterIndex, setActiveParameterIndex] = useState<number>(0)
 
   const sortRef = useRef<HTMLDivElement>(document.createElement('div'))
 
-  const togglePopupVisibility = () => setIsOpen(!isOpen)
-  const closePopup = () => setIsOpen(false)
-
   useEffect(() => {
-    document.body.addEventListener('click', (event: MouseEvent) => {
+    const listener = (event: MouseEvent) => {
       if (!event?.composedPath().includes(sortRef.current) && isOpen) {
         closePopup()
       }
-    })
+    }
+
+    document.body.addEventListener('click', listener)
+
+    // Component Will Unmount
+    return () => {
+      document.removeEventListener('click', listener)
+    }
   }, [isOpen])
+
+  const togglePopupVisibility = () => setIsOpen(!isOpen)
+  const closePopup = () => setIsOpen(false)
+  const handleParameterClick = (idx: number) => {
+    return () => {
+      setActiveParameterIndex(idx)
+      closePopup()
+    }
+  }
 
   return (
     <div className='sort' ref={sortRef}>
@@ -49,7 +62,9 @@ const SortPopup: React.FC<SortPopupPropsTypes> = (props): JSX.Element => {
             <b>Сортировка по:</b>
             <span onClick={togglePopupVisibility}>{items[activeParameterIndex]}</span>
           </>
-        ) : 'Нет параметров сортировки'}
+        ) : (
+          'Нет параметров сортировки'
+        )}
       </div>
 
       {isOpen && (
@@ -60,10 +75,7 @@ const SortPopup: React.FC<SortPopupPropsTypes> = (props): JSX.Element => {
                 <li
                   key={parameter}
                   className={activeParameterIndex === idx ? 'active' : ''}
-                  onClick={() => {
-                    setActiveParameterIndex(idx)
-                    closePopup()
-                  }}>
+                  onClick={handleParameterClick(idx)}>
                   {items[idx]}
                 </li>
               )
@@ -73,6 +85,6 @@ const SortPopup: React.FC<SortPopupPropsTypes> = (props): JSX.Element => {
       )}
     </div>
   )
-}
+})
 
 export default SortPopup
