@@ -1,37 +1,31 @@
-import React, { useState } from 'react'
-
-export interface ICategory {
-  name: string
-  text: string
-}
-
+import React from 'react'
 interface CategoriesPropsTypes {
-  items: Array<ICategory>
-  onCategoryClick: (item: ICategory) => () => void
+  items: Array<string>
+  onCategoryClick: (item: string) => void
+  activeCategory: string
 }
 
 const Categories: React.FC<CategoriesPropsTypes> = React.memo((props): JSX.Element => {
-  const { items, onCategoryClick } = props
-  const [activeCategory, setActiveCategory] = useState<string>(items[0]?.name || '')
+  const { activeCategory, items, onCategoryClick } = props
+  // const [activeCategory, setActiveCategory] = useState<string>(items[0])
 
   return (
     <div className='categories'>
       <ul>
         {(items.length &&
-          items.map((item) => {
-            const handleClick = (item: ICategory) => {
+          items.map((item, index) => {
+            const handleClick = (item: string) => {
               return () => {
                 onCategoryClick(item)
-                setActiveCategory(item.name)
               }
             }
 
             return (
               <li
-                key={item.name}
+                key={item}
                 onClick={handleClick(item)}
-                className={activeCategory === item.name ? 'active' : ''}>
-                {item.text}
+                className={items.indexOf(activeCategory) === index ? 'active' : ''}>
+                {item}
               </li>
             )
           })) ||

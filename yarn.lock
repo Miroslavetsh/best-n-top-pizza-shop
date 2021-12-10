@@ -10001,6 +10001,11 @@ react-app-polyfill@^2.0.0:
     regenerator-runtime "^0.13.7"
     whatwg-fetch "^3.4.1"
 
+react-content-loader@^6.1.0:
+  version "6.1.0"
+  resolved "https://registry.yarnpkg.com/react-content-loader/-/react-content-loader-6.1.0.tgz#6b06be3889d2480ae909be0374a6062a36a53dec"
+  integrity sha512-S4/+doQrNs0PGDgUYCGGfdFjGax8dMQzYkWcSSxfaUcUjFkbnikWARuX9lWkglocIVhxnn3lxNb6uEWFFUzNUw==
+
 react-dev-utils@^11.0.3:
   version "11.0.4"
   resolved "https://registry.npmjs.org/react-dev-utils/-/react-dev-utils-11.0.4.tgz"
@@ -10190,6 +10195,11 @@ redent@^3.0.0:
   dependencies:
     indent-string "^4.0.0"
     strip-indent "^3.0.0"
+
+redux-thunk@^2.4.1:
+  version "2.4.1"
+  resolved "https://registry.yarnpkg.com/redux-thunk/-/redux-thunk-2.4.1.tgz#0dd8042cf47868f4b29699941de03c9301a75714"
+  integrity sha512-OOYGNY5Jy2TWvTL1KgAlVy6dcx3siPJ1wTq741EPyUKfn6W6nChdICjZwCd0p8AZBs5kWpZlbkXW2nE/zjUa+Q==
 
 redux@^4.0.0, redux@^4.1.2:
   version "4.1.2"

@@ -3,8 +3,8 @@ import { SortParameter } from '../../components/SortPopup'
 import { availableAction } from '../../constants'
 
 const initialState = {
-  category: 0,
-  sortBy: SortParameter.popularity,
+  category: 'All',
+  sortBy: SortParameter.POPULARITY,
 }
 
 const filter = (state = initialState, action: AnyAction) => {

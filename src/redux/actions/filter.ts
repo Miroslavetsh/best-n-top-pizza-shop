@@ -6,7 +6,7 @@ export const setSortBy = (payload: SortParameter) => ({
   payload,
 })
 
-export const setCategory = (payload: number) => ({
+export const setCategory = (payload: string) => ({
   type: availableAction.SET_CATEGORY,
   payload,
 })

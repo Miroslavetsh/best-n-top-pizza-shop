@@ -1,16 +1,16 @@
 import React, { useState } from 'react'
 
-import Pizza from '../models/Pizza'
+import Pizza from '../../models/Pizza'
 
 enum pizzaDoughTypes {
-  thin = 'тонкое',
-  traditional = 'традиционное',
+  THIN = 'thin',
+  TRADITIONAL = 'traditional',
 }
 
 enum pizzaSizes {
-  'small' = 26,
-  'medium' = 30,
-  'big' = 40,
+  SMALL = 26,
+  MEDIUM = 30,
+  BIG = 40,
 }
 
 interface PizzaBlockPropsTypes {
@@ -20,8 +20,8 @@ interface PizzaBlockPropsTypes {
 const PizzaBlock: React.FC<PizzaBlockPropsTypes> = (props): JSX.Element => {
   const { imageUrl, name, types, sizes, price } = props.pizza
 
-  const availablePizzaTypes = [pizzaDoughTypes.thin, pizzaDoughTypes.traditional]
-  const availablePizzaSizes = [pizzaSizes.small, pizzaSizes.medium, pizzaSizes.big]
+  const availablePizzaTypes = [pizzaDoughTypes.THIN, pizzaDoughTypes.TRADITIONAL]
+  const availablePizzaSizes = [pizzaSizes.SMALL, pizzaSizes.MEDIUM, pizzaSizes.BIG]
 
   const [activeType, setActiveType] = useState<number>(types[0])
   const [activeSize, setActiveSize] = useState<number>(sizes[0])
