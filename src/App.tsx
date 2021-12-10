@@ -12,14 +12,6 @@ import { Home, Cart } from './pages'
 const App: React.FC = () => {
   const dispatch = useDispatch<Dispatch>()
 
-  //@ts-ignore only for development, to make force request to the server
-  window.test = async () => {
-    const response = await axios.get('/db.json')
-    const { pizzas } = response.data
-
-    dispatch(setPizza(pizzas))
-  }
-
   useEffect(() => {
     const getPizzas = async () => {
       const response = await axios.get('http://localhost:80/pizzas')
