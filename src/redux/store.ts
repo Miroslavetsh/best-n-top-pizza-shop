@@ -1,4 +1,6 @@
-import { createStore } from 'redux'
+import { createStore, compose, applyMiddleware } from 'redux'
+import thunk from 'redux-thunk'
+
 import { SortParameter } from '../components/SortPopup'
 import Pizza from '../models/Pizza'
 import rootReducer from './reducers'
@@ -9,15 +11,13 @@ export interface RootState {
     isLoaded: boolean
   }
   filter: {
-    category: Number
+    category: string
     sortBy: SortParameter
   }
 }
 
-const store = createStore(
-  rootReducer,
-  // @ts-ignore Redux Tools for development
-  window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__(),
-)
+//@ts-ignore Only for development
+const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE || compose
+const store = createStore(rootReducer, composeEnhancers(applyMiddleware(thunk)))
 
 export default store

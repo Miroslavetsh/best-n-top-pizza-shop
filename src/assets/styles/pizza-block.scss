@@ -1,11 +1,9 @@
 .pizza-block {
-  width: 280px;
+  width: 24%;
+  min-width: 280px;
+  margin: 0 auto;
+  margin-bottom: 64px;
   text-align: center;
-  margin-bottom: 65px;
-
-  &:not(:nth-of-type(4n)) {
-    margin-right: 35px;
-  }
 
   &__image {
     width: 260px;

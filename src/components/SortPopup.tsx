@@ -1,19 +1,20 @@
 import React, { useEffect, useRef, useState } from 'react'
 
 export enum SortParameter {
-  popularity = 'популярности',
-  price = 'цене',
-  alphabet = 'алфавиту',
+  POPULARITY = 'popularity',
+  PRICE = 'price',
+  NAME = 'name',
 }
 
 interface SortPopupPropsTypes {
   items: Array<SortParameter>
+  activeSortBy: SortParameter
+  onSortClick: (parameter: SortParameter) => void
 }
 
 const SortPopup: React.FC<SortPopupPropsTypes> = React.memo((props): JSX.Element => {
-  const { items } = props
+  const { items, activeSortBy, onSortClick } = props
   const [isOpen, setIsOpen] = useState<boolean>(false)
-  const [activeParameterIndex, setActiveParameterIndex] = useState<number>(0)
 
   const sortRef = useRef<HTMLDivElement>(document.createElement('div'))
 
@@ -34,9 +35,9 @@ const SortPopup: React.FC<SortPopupPropsTypes> = React.memo((props): JSX.Element
 
   const togglePopupVisibility = () => setIsOpen(!isOpen)
   const closePopup = () => setIsOpen(false)
-  const handleParameterClick = (idx: number) => {
+  const handleParameterClick = (item: SortParameter) => {
     return () => {
-      setActiveParameterIndex(idx)
+      onSortClick(item)
       closePopup()
     }
   }
@@ -60,7 +61,7 @@ const SortPopup: React.FC<SortPopupPropsTypes> = React.memo((props): JSX.Element
         {items.length ? (
           <>
             <b>Сортировка по:</b>
-            <span onClick={togglePopupVisibility}>{items[activeParameterIndex]}</span>
+            <span onClick={togglePopupVisibility}>{activeSortBy}</span>
           </>
         ) : (
           'Нет параметров сортировки'
@@ -74,8 +75,8 @@ const SortPopup: React.FC<SortPopupPropsTypes> = React.memo((props): JSX.Element
               return (
                 <li
                   key={parameter}
-                  className={activeParameterIndex === idx ? 'active' : ''}
-                  onClick={handleParameterClick(idx)}>
+                  className={items.indexOf(activeSortBy) === idx ? 'active' : ''}
+                  onClick={handleParameterClick(parameter)}>
                   {items[idx]}
                 </li>
               )

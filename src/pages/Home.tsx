@@ -1,41 +1,46 @@
+import React, { useCallback, useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
+import { Dispatch } from 'redux'
 
 import { RootState } from '../redux/store'
+import { setCategory, setSortBy } from '../redux/actions/filter'
+import { fetchPizza, setIsLoaded } from '../redux/actions/pizza'
 
-import { Categories, SortPopup, PizzaBlock } from '../components'
-import { ICategory } from '../components/Categories'
-import { SortParameter } from '../components/SortPopup'
+import { Categories, SortPopup, PizzaBlock, PizzaBlockPlaceholder } from '../components'
+import { CATEGORIES, SORT_PARAMETER, PIZZA_TO_SHOW } from '../constants'
 import Pizza from '../models/Pizza'
-import React, { useCallback } from 'react'
-import { Dispatch } from 'redux'
-import { setCategory } from '../redux/actions/filter'
+import { SortParameter } from '../components/SortPopup'
 
-const categories: Array<ICategory> = [
-  { name: 'all', text: 'Все' },
-  { name: 'meat', text: 'Мясные' },
-  { name: 'vegan', text: 'Вегетерианские' },
-  { name: 'grill', text: 'Гриль' },
-  { name: 'spice', text: 'Острые' },
-  { name: 'closed', text: 'Закрытые' },
-]
-
-const sortParameters: Array<SortParameter> = [
-  SortParameter.popularity,
-  SortParameter.price,
-  SortParameter.alphabet,
-]
+const categories = CATEGORIES
+const sortParameters = SORT_PARAMETER
 
 // React.memo is equal to ShouldComponentUpdate
 const Home: React.FC = React.memo((): JSX.Element => {
   const pizzas = useSelector<RootState, Array<Pizza>>(({ pizza }) => [...pizza.items])
-
+  const isLoaded = useSelector<RootState, boolean>(({ pizza }) => pizza.isLoaded)
+  const { category, sortBy } = useSelector<RootState, { category: string; sortBy: SortParameter }>(
+    ({ filter }) => filter,
+  )
   const dispatch = useDispatch<Dispatch>()
 
+  useEffect(() => {
+    dispatch(setIsLoaded(true))
+
+    fetchPizza(category, sortBy)(dispatch)
+
+    dispatch(setIsLoaded(false))
+  }, [dispatch, category, sortBy])
+
   const handleCategoryClick = useCallback(
-    (item: ICategory) => {
-      return () => {
-        dispatch(setCategory(categories.indexOf(item)))
-      }
+    (item: string) => {
+      dispatch(setCategory(item))
+    },
+    [dispatch],
+  )
+
+  const handleSortClick = useCallback(
+    (item: SortParameter) => {
+      dispatch(setSortBy(item))
     },
     [dispatch],
   )
@@ -43,17 +48,24 @@ const Home: React.FC = React.memo((): JSX.Element => {
   return (
     <div className='container'>
       <div className='content__top'>
-        <Categories items={categories} onCategoryClick={handleCategoryClick} />
+        <Categories
+          activeCategory={category}
+          items={categories}
+          onCategoryClick={handleCategoryClick}
+        />
 
-        <SortPopup items={sortParameters} />
+        <SortPopup activeSortBy={sortBy} items={sortParameters} onSortClick={handleSortClick} />
       </div>
 
-      <h2 className='content__title'>Все пиццы</h2>
+      <h2 className='content__title'>All pizza</h2>
       <div className='content__items'>
-        {pizzas.map.length &&
-          pizzas.map((pizza) => {
-            return <PizzaBlock key={pizza.id} pizza={pizza} />
-          })}
+        {isLoaded
+          ? pizzas.map((pizza) => {
+              return <PizzaBlock key={pizza.id} pizza={pizza} />
+            })
+          : Array(PIZZA_TO_SHOW)
+              .fill(0)
+              .map((_, idx) => <PizzaBlockPlaceholder key={idx} />)}
       </div>
     </div>
   )
