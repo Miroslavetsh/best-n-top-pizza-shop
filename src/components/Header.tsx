@@ -67,7 +67,9 @@ const Header: React.FC = (): JSX.Element => {
                   <span>{totalCount}</span>
                 </>
               ) : (
-                'Start Your Shopping'
+                <>
+                  Start &nbsp;<b>YOUR</b>&nbsp; Shopping
+                </>
               )}
             </Button>
           </Link>
