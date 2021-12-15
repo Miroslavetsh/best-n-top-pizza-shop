@@ -6,7 +6,7 @@ import { availableActions, CATEGORIES } from '../../constants'
 import { SortParameter } from '../../components/SortPopup'
 
 export const fetchPizza = (category: string, sortBy: SortParameter) => (dispatch: Dispatch) => {
-  let url = `http://localhost:80/pizzas${
+  let url = `/pizzas${
     category !== CATEGORIES[0] ? '?category=' + category + '&' : '?'
   }_sort=${sortBy}&_order=${sortBy === SortParameter.NAME ? 'asc' : 'desc'}`
 
