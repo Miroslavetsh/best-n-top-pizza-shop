@@ -8,20 +8,23 @@ import { fetchPizza, setIsLoaded } from '../redux/actions/pizza'
 
 import { Categories, SortPopup, PizzaBlock, PizzaBlockPlaceholder } from '../components'
 import { CATEGORIES, SORT_PARAMETER, PIZZA_TO_SHOW } from '../constants'
-import Pizza from '../models/Pizza'
+import Pizza, { ChosenPizza } from '../models/Pizza'
 import { SortParameter } from '../components/SortPopup'
+import { addPizzaToCart } from '../redux/actions/cart'
+import { CartItems } from '../redux/reducers/cart'
 
 const categories = CATEGORIES
 const sortParameters = SORT_PARAMETER
 
 // React.memo is equal to ShouldComponentUpdate
 const Home: React.FC = React.memo((): JSX.Element => {
+  const dispatch = useDispatch<Dispatch>()
   const pizzas = useSelector<RootState, Array<Pizza>>(({ pizza }) => [...pizza.items])
   const isLoaded = useSelector<RootState, boolean>(({ pizza }) => pizza.isLoaded)
+  const cartItems = useSelector<RootState, CartItems>(({ cart }) => cart.items)
   const { category, sortBy } = useSelector<RootState, { category: string; sortBy: SortParameter }>(
     ({ filter }) => filter,
   )
-  const dispatch = useDispatch<Dispatch>()
 
   useEffect(() => {
     dispatch(setIsLoaded(true))
@@ -45,6 +48,11 @@ const Home: React.FC = React.memo((): JSX.Element => {
     [dispatch],
   )
 
+  const handlePizzaButtonClick = useCallback(
+    (pizza: ChosenPizza) => dispatch(addPizzaToCart(pizza)),
+    [dispatch],
+  )
+
   return (
     <div className='container'>
       <div className='content__top'>
@@ -61,7 +69,14 @@ const Home: React.FC = React.memo((): JSX.Element => {
       <div className='content__items'>
         {isLoaded
           ? pizzas.map((pizza) => {
-              return <PizzaBlock key={pizza.id} pizza={pizza} />
+              return (
+                <PizzaBlock
+                  amountOfItemsInCart={cartItems[pizza.id]?.length || 0}
+                  onButtonClick={handlePizzaButtonClick}
+                  key={pizza.id}
+                  pizza={pizza}
+                />
+              )
             })
           : Array(PIZZA_TO_SHOW)
               .fill(0)

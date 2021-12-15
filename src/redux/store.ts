@@ -4,6 +4,7 @@ import thunk from 'redux-thunk'
 import { SortParameter } from '../components/SortPopup'
 import Pizza from '../models/Pizza'
 import rootReducer from './reducers'
+import { CartItems } from './reducers/cart'
 
 export interface RootState {
   pizza: {
@@ -14,10 +15,14 @@ export interface RootState {
     category: string
     sortBy: SortParameter
   }
+  cart: {
+    items: CartItems
+    totalCount: number
+    totalPrice: number
+  }
 }
 
-//@ts-ignore Only for development
-const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE || compose
+const composeEnhancers = compose
 const store = createStore(rootReducer, composeEnhancers(applyMiddleware(thunk)))
 
 export default store

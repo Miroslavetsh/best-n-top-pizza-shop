@@ -1,8 +1,16 @@
 import { Link } from 'react-router-dom'
+import { useSelector } from 'react-redux'
+
+import { RootState } from '../redux/store'
 
 import Button from './Button'
 
 const Header: React.FC = (): JSX.Element => {
+  const { totalCount, totalPrice } = useSelector<
+    RootState,
+    { totalCount: number; totalPrice: number }
+  >(({ cart }) => cart)
+
   return (
     <div className='header'>
       <div className='container'>
@@ -21,7 +29,7 @@ const Header: React.FC = (): JSX.Element => {
         <div className='header__cart'>
           <Link to='/cart'>
             <Button className='button--cart'>
-              <span>520 ₽</span>
+              <span>$ {totalPrice}</span>
 
               <div className='button__delimiter'></div>
 
@@ -54,7 +62,7 @@ const Header: React.FC = (): JSX.Element => {
                 />
               </svg>
 
-              <span>3</span>
+              <span>{totalCount}</span>
             </Button>
           </Link>
         </div>

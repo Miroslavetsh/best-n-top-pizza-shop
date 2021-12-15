@@ -1,4 +1,4 @@
-interface ButtonPropsTypes {
+interface ButtonPropTypes {
   href?: string
   className: string
   onClick?: () => void
@@ -6,7 +6,7 @@ interface ButtonPropsTypes {
   outline?: boolean
 }
 
-const Button: React.FC<ButtonPropsTypes> = (props): JSX.Element => {
+const Button: React.FC<ButtonPropTypes> = (props): JSX.Element => {
   const { href, onClick, children, outline, className } = props
 
   const classNames = ['button', className]

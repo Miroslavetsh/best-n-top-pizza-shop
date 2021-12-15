@@ -1,6 +1,6 @@
 import { AnyAction } from 'redux'
 import { SortParameter } from '../../components/SortPopup'
-import { availableAction } from '../../constants'
+import { availableActions } from '../../constants'
 
 const initialState = {
   category: 'All',
@@ -9,12 +9,12 @@ const initialState = {
 
 const filter = (state = initialState, action: AnyAction) => {
   switch (action.type) {
-    case availableAction.SET_SORT_BY:
+    case availableActions.SET_SORT_BY:
       return {
         ...state,
         sortBy: action.payload,
       }
-    case availableAction.SET_CATEGORY:
+    case availableActions.SET_CATEGORY:
       return {
         ...state,
         category: action.payload,

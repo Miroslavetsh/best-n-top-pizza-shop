@@ -6,7 +6,7 @@
       "name": "Peperoni Fresh & spice",
       "types": [0, 1],
       "sizes": [26, 30, 40],
-      "price": 803,
+      "price": 80,
       "category": "Meat",
       "popularity": 4
     },
@@ -16,7 +16,7 @@
       "name": "Cheese",
       "types": [0],
       "sizes": [26, 40],
-      "price": 245,
+      "price": 24,
       "category": "Vegan",
       "popularity": 6
     },
@@ -26,7 +26,7 @@
       "name": "Chicken BBQ",
       "types": [0],
       "sizes": [26, 40],
-      "price": 295,
+      "price": 29,
       "category": "Meat",
       "popularity": 4
     },
@@ -36,7 +36,7 @@
       "name": "Sour-sweet chicken",
       "types": [1],
       "sizes": [26, 30, 40],
-      "price": 275,
+      "price": 27,
       "category": "Grill",
       "popularity": 2
     },
@@ -46,7 +46,7 @@
       "name": "Cheeseburger-pizza",
       "types": [0, 1],
       "sizes": [26, 30, 40],
-      "price": 415,
+      "price": 41,
       "category": "Spicy",
       "popularity": 8
     },
@@ -56,7 +56,7 @@
       "name": "Crazy peperoni",
       "types": [0],
       "sizes": [30, 40],
-      "price": 580,
+      "price": 58,
       "category": "Grill",
       "popularity": 2
     },
@@ -66,7 +66,7 @@
       "name": "Pepperoni",
       "types": [0, 1],
       "sizes": [26, 30, 40],
-      "price": 675,
+      "price": 67,
       "category": "Vegan",
       "popularity": 9
     },
@@ -76,7 +76,7 @@
       "name": "Margarita",
       "types": [0, 1],
       "sizes": [26, 30, 40],
-      "price": 450,
+      "price": 45,
       "category": "Closed",
       "popularity": 10
     },
@@ -86,7 +86,7 @@
       "name": "Seasons",
       "types": [0, 1],
       "sizes": [26, 30, 40],
-      "price": 395,
+      "price": 39,
       "category": "Closed",
       "popularity": 10
     },
@@ -96,7 +96,7 @@
       "name": "Vegetables & mushrooms 🌱",
       "types": [0, 1],
       "sizes": [26, 30, 40],
-      "price": 285,
+      "price": 28,
       "category": "Vegan",
       "popularity": 7
     },
@@ -106,7 +106,7 @@
       "name": "Vegetables & mushrooms 🌱 (2)",
       "types": [0, 1],
       "sizes": [26, 30, 40],
-      "price": 285,
+      "price": 28,
       "category": "Vegan",
       "popularity": 7
     },
@@ -116,7 +116,7 @@
       "name": "Vegetables & mushrooms 🌱 (3)",
       "types": [0, 1],
       "sizes": [26, 30, 40],
-      "price": 285,
+      "price": 28,
       "category": "Vegan",
       "popularity": 7
     }

@@ -1,11 +1,11 @@
 import React from 'react'
-interface CategoriesPropsTypes {
+interface CategoriesPropTypes {
   items: Array<string>
   onCategoryClick: (item: string) => void
   activeCategory: string
 }
 
-const Categories: React.FC<CategoriesPropsTypes> = React.memo((props): JSX.Element => {
+const Categories: React.FC<CategoriesPropTypes> = React.memo((props): JSX.Element => {
   const { activeCategory, items, onCategoryClick } = props
   // const [activeCategory, setActiveCategory] = useState<string>(items[0])
 
