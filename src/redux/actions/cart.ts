@@ -15,6 +15,20 @@ export const removePizzaFromCart = (payload: number) => {
   }
 }
 
+export const plusPizzaItem = (payload: number) => {
+  return {
+    type: availableActions.PLUS_PIZZA_ITEM,
+    payload,
+  }
+}
+
+export const minusPizzaItem = (payload: number) => {
+  return {
+    type: availableActions.MINUS_PIZZA_ITEM,
+    payload,
+  }
+}
+
 export const clearCart = () => {
   return {
     type: availableActions.CLEAR_CART,

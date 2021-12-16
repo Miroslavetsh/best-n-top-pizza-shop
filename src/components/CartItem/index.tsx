@@ -1,12 +1,28 @@
+import { Button } from '..'
+
 interface CartItemPropTypes {
   name: string
   type: string
   size: number
   price: number
   count: number
+  onRemovePizzaClick: () => void
+  onPlusPizzaClick: () => void
+  onMinusPizzaClick: () => void
 }
 
-const CartItem: React.FC<CartItemPropTypes> = ({ name, type, size, price, count }): JSX.Element => {
+const CartItem: React.FC<CartItemPropTypes> = (props): JSX.Element => {
+  const {
+    name,
+    type,
+    size,
+    price,
+    count,
+    onRemovePizzaClick,
+    onPlusPizzaClick,
+    onMinusPizzaClick,
+  } = props
+
   return (
     <div className='cart__item'>
       <div className='cart__item-img'>
@@ -23,7 +39,11 @@ const CartItem: React.FC<CartItemPropTypes> = ({ name, type, size, price, count 
         </p>
       </div>
       <div className='cart__item-count'>
-        <div className='button button--outline button--circle cart__item-count-minus'>
+        <Button
+          disabled={count === 1}
+          onClick={count > 1 ? onMinusPizzaClick : () => {}}
+          className='button--circle cart__item-count-minus'
+          outline>
           <svg
             width='10'
             height='10'
@@ -39,11 +59,11 @@ const CartItem: React.FC<CartItemPropTypes> = ({ name, type, size, price, count 
               fill='#EB5A1E'
             />
           </svg>
-        </div>
+        </Button>
 
         <b>{count}</b>
 
-        <div className='button button--outline button--circle cart__item-count-plus'>
+        <Button onClick={onPlusPizzaClick} className='button--circle cart__item-count-plus' outline>
           <svg
             width='10'
             height='10'
@@ -59,13 +79,13 @@ const CartItem: React.FC<CartItemPropTypes> = ({ name, type, size, price, count 
               fill='#EB5A1E'
             />
           </svg>
-        </div>
+        </Button>
       </div>
       <div className='cart__item-price'>
-        <b>&#36; {price}</b>
+        <b>&#36; {price * count}</b>
       </div>
       <div className='cart__item-remove'>
-        <div className='button button--outline button--circle'>
+        <Button onClick={onRemovePizzaClick} className='button--circle' outline>
           <svg
             width='10'
             height='10'
@@ -81,7 +101,7 @@ const CartItem: React.FC<CartItemPropTypes> = ({ name, type, size, price, count 
               fill='#EB5A1E'
             />
           </svg>
-        </div>
+        </Button>
       </div>
     </div>
   )

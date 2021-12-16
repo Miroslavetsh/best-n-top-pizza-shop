@@ -1,3 +1,4 @@
+import { useCallback } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
 import { Dispatch } from 'redux'
@@ -5,7 +6,12 @@ import { Dispatch } from 'redux'
 import { CartItem } from '../components'
 import { ChosenPizza } from '../models/Pizza'
 import { CartState, RootState } from '../models/Store'
-import { clearCart } from '../redux/actions/cart'
+import {
+  clearCart,
+  minusPizzaItem,
+  plusPizzaItem,
+  removePizzaFromCart,
+} from '../redux/actions/cart'
 
 const Cart: React.FC = (): JSX.Element => {
   const { totalPrice, totalCount, items } = useSelector<RootState, CartState>(({ cart }) => cart)
@@ -15,9 +21,35 @@ const Cart: React.FC = (): JSX.Element => {
     .map(Number)
     .map((key) => items[key].items[0])
 
-  const handleClearCartClick = () => {
+  const handleClearCartClick = useCallback(() => {
     if (window.confirm('Are You sure to clear all of your pizza!?')) dispatch(clearCart())
-  }
+  }, [dispatch])
+
+  const handleRemovePizzaClick = useCallback(
+    (id: number) => {
+      return () => {
+        if (window.confirm('Are You sure to remove this pizza!?')) dispatch(removePizzaFromCart(id))
+      }
+    },
+    [dispatch],
+  )
+
+  const handlePlusPizzaItemClick = useCallback(
+    (id: number) => {
+      return () => {
+        dispatch(plusPizzaItem(id))
+      }
+    },
+    [dispatch],
+  )
+  const handleMinusPizzaItemClick = useCallback(
+    (id: number) => {
+      return () => {
+        dispatch(minusPizzaItem(id))
+      }
+    },
+    [dispatch],
+  )
 
   return (
     <div className='content'>
@@ -98,13 +130,17 @@ const Cart: React.FC = (): JSX.Element => {
             </div>
 
             <div className='content__items'>
-              {addedPizzas.map((item: ChosenPizza) => (
+              {addedPizzas.map(({ name, type, size, price, id }: ChosenPizza) => (
                 <CartItem
-                  name={item.name}
-                  type={item.type}
-                  size={item.size}
-                  price={item.price}
-                  count={items[item.id].items.length}
+                  key={id}
+                  name={name}
+                  type={type}
+                  size={size}
+                  price={price}
+                  count={items[id].items.length}
+                  onRemovePizzaClick={handleRemovePizzaClick(id)}
+                  onPlusPizzaClick={handlePlusPizzaItemClick(id)}
+                  onMinusPizzaClick={handleMinusPizzaItemClick(id)}
                 />
               ))}
             </div>
