@@ -27,7 +27,7 @@ const Header: React.FC = (): JSX.Element => {
         </Link>
 
         <div className='header__cart'>
-          <Link to='/cart'>
+          <Link to={totalCount > 0 && totalPrice > 0 ? '/cart' : '/'}>
             <Button className='button--cart'>
               {totalPrice && totalCount ? (
                 <>

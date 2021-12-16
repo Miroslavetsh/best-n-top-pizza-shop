@@ -3,9 +3,10 @@ interface CartItemPropTypes {
   type: string
   size: number
   price: number
+  count: number
 }
 
-const CartItem: React.FC<CartItemPropTypes> = ({ name, type, size, price }): JSX.Element => {
+const CartItem: React.FC<CartItemPropTypes> = ({ name, type, size, price, count }): JSX.Element => {
   return (
     <div className='cart__item'>
       <div className='cart__item-img'>
@@ -39,7 +40,9 @@ const CartItem: React.FC<CartItemPropTypes> = ({ name, type, size, price }): JSX
             />
           </svg>
         </div>
-        <b>2</b>
+
+        <b>{count}</b>
+
         <div className='button button--outline button--circle cart__item-count-plus'>
           <svg
             width='10'

@@ -71,7 +71,7 @@ const Home: React.FC = React.memo((): JSX.Element => {
           ? pizzas.map((pizza) => {
               return (
                 <PizzaBlock
-                  amountOfItemsInCart={cartItems[pizza.id]?.length || 0}
+                  amountOfItemsInCart={cartItems[pizza.id]?.items?.length || 0}
                   onButtonClick={handlePizzaButtonClick}
                   key={pizza.id}
                   pizza={pizza}

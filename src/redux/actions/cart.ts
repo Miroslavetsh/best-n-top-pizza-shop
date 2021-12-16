@@ -14,3 +14,9 @@ export const removePizzaFromCart = (payload: number) => {
     payload,
   }
 }
+
+export const clearCart = () => {
+  return {
+    type: availableActions.CLEAR_CART,
+  }
+}
