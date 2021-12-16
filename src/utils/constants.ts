@@ -1,4 +1,4 @@
-import { SortParameter } from './components/SortPopup'
+import { SortParameter } from '../components/SortPopup'
 
 export enum availableActions {
   SET_SORT_BY = 'SET_SORT_BY',

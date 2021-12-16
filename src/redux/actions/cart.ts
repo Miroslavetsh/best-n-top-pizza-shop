@@ -1,4 +1,4 @@
-import { availableActions } from '../../constants'
+import { availableActions } from '../../utils/constants'
 import { ChosenPizza } from '../../models/Pizza'
 
 export const addPizzaToCart = (payload: ChosenPizza) => {

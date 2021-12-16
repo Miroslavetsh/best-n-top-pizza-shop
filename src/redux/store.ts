@@ -1,28 +1,20 @@
 import { createStore, compose, applyMiddleware } from 'redux'
 import thunk from 'redux-thunk'
 
-import { SortParameter } from '../components/SortPopup'
-import Pizza from '../models/Pizza'
 import rootReducer from './reducers'
-import { CartItems } from './reducers/cart'
 
-export interface RootState {
-  pizza: {
-    items: Array<Pizza>
-    isLoaded: boolean
-  }
-  filter: {
-    category: string
-    sortBy: SortParameter
-  }
-  cart: {
-    items: CartItems
-    totalCount: number
-    totalPrice: number
+
+
+// FIXME: remove global declaring from here
+declare global {
+  interface Window {
+    __REDUX_DEVTOOLS_EXTENSION_COMPOSE__?: typeof compose
   }
 }
 
-const composeEnhancers = compose
+// FIXME: to here
+
+const composeEnhancers = (window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ as typeof compose) || compose
 const store = createStore(rootReducer, composeEnhancers(applyMiddleware(thunk)))
 
 export default store

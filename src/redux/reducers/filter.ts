@@ -1,6 +1,6 @@
 import { AnyAction } from 'redux'
 import { SortParameter } from '../../components/SortPopup'
-import { availableActions } from '../../constants'
+import { availableActions } from '../../utils/constants'
 
 const initialState = {
   category: 'All',

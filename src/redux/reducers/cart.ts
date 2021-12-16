@@ -1,6 +1,6 @@
 import { AnyAction } from 'redux'
 
-import { availableActions } from '../../constants'
+import { availableActions } from '../../utils/constants'
 import { ChosenPizza } from '../../models/Pizza'
 
 export interface CartItems {

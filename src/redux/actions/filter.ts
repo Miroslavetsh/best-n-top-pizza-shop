@@ -1,4 +1,4 @@
-import { availableActions } from '../../constants'
+import { availableActions } from '../../utils/constants'
 import { SortParameter } from '../../components/SortPopup'
 
 export const setSortBy = (payload: SortParameter) => ({
