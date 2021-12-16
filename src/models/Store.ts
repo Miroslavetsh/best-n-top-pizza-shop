@@ -1,6 +1,6 @@
-import { SortParameter } from "../components/SortPopup";
-import { CartItems } from "../redux/reducers/cart";
-import Pizza from "./Pizza";
+import { SortParameter } from '../utils/constants'
+import { CartItems } from '../redux/reducers/cart'
+import Pizza from './Pizza'
 
 export interface PizzaState {
   items: Array<Pizza>

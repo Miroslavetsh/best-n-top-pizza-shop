@@ -2,16 +2,16 @@ import React, { useCallback, useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { Dispatch } from 'redux'
 
-import { RootState } from '../models/Store'
+import { CartItems } from '../redux/reducers/cart'
 import { setCategory, setSortBy } from '../redux/actions/filter'
 import { fetchPizza, setIsLoaded } from '../redux/actions/pizza'
+import { addPizzaToCart } from '../redux/actions/cart'
 
 import { Categories, SortPopup, PizzaBlock, PizzaBlockPlaceholder } from '../components'
-import { CATEGORIES, SORT_PARAMETER, PIZZA_TO_SHOW } from '../utils/constants'
+import { CATEGORIES, SORT_PARAMETER, PIZZA_TO_SHOW, SortParameter } from '../utils/constants'
+
 import Pizza, { ChosenPizza } from '../models/Pizza'
-import { SortParameter } from '../components/SortPopup'
-import { addPizzaToCart } from '../redux/actions/cart'
-import { CartItems } from '../redux/reducers/cart'
+import { RootState } from '../models/Store'
 
 const categories = CATEGORIES
 const sortParameters = SORT_PARAMETER

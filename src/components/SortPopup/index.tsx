@@ -1,10 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react'
 
-export enum SortParameter {
-  POPULARITY = 'popularity',
-  PRICE = 'price',
-  NAME = 'name',
-}
+import { SortParameter } from '../../utils/constants'
 
 interface SortPopupPropTypes {
   items: Array<SortParameter>
