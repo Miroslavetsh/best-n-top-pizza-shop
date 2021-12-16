@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
+import { Button } from '..'
 
-import Pizza from '../../models/Pizza'
+import Pizza, { ChosenPizza } from '../../models/Pizza'
 
 enum pizzaDoughTypes {
   THIN = 'thin',
@@ -13,15 +14,18 @@ enum pizzaSizes {
   BIG = 40,
 }
 
-interface PizzaBlockPropsTypes {
+interface PizzaBlockPropTypes {
   pizza: Pizza
+  amountOfItemsInCart: number
+  onButtonClick: (pizza: ChosenPizza) => void
 }
 
-const PizzaBlock: React.FC<PizzaBlockPropsTypes> = (props): JSX.Element => {
-  const { imageUrl, name, types, sizes, price } = props.pizza
+const PizzaBlock: React.FC<PizzaBlockPropTypes> = (props): JSX.Element => {
+  const { id, imageUrl, name, types, sizes, price } = props.pizza
+  const { onButtonClick, amountOfItemsInCart } = props
 
-  const availablePizzaTypes = [pizzaDoughTypes.THIN, pizzaDoughTypes.TRADITIONAL]
-  const availablePizzaSizes = [pizzaSizes.SMALL, pizzaSizes.MEDIUM, pizzaSizes.BIG]
+  const availableDoughTypes = [pizzaDoughTypes.THIN, pizzaDoughTypes.TRADITIONAL]
+  const availableSizes = [pizzaSizes.SMALL, pizzaSizes.MEDIUM, pizzaSizes.BIG]
 
   const [activeType, setActiveType] = useState<number>(types[0])
   const [activeSize, setActiveSize] = useState<number>(sizes[0])
@@ -31,7 +35,18 @@ const PizzaBlock: React.FC<PizzaBlockPropsTypes> = (props): JSX.Element => {
   }
 
   const selectPizzaSize = (idx: number) => {
-    setActiveSize(availablePizzaSizes[idx])
+    setActiveSize(availableSizes[idx])
+  }
+
+  const addPizzaToCart = () => {
+    onButtonClick({
+      id,
+      imageUrl,
+      name,
+      type: availableDoughTypes[activeType],
+      size: activeSize,
+      price,
+    })
   }
 
   return (
@@ -42,7 +57,7 @@ const PizzaBlock: React.FC<PizzaBlockPropsTypes> = (props): JSX.Element => {
 
       <div className='pizza-block__selector'>
         <ul>
-          {availablePizzaTypes.map((type, idx) => {
+          {availableDoughTypes.map((type, idx) => {
             const classNames = []
             if (!types.includes(idx)) classNames.push('disabled')
             if (!classNames.includes('disabled') && activeType === idx) {
@@ -64,10 +79,10 @@ const PizzaBlock: React.FC<PizzaBlockPropsTypes> = (props): JSX.Element => {
         </ul>
 
         <ul>
-          {availablePizzaSizes.map((size, idx) => {
+          {availableSizes.map((size, idx) => {
             const classNames = []
-            if (!sizes.includes(availablePizzaSizes[idx])) classNames.push('disabled')
-            if (!classNames.includes('disabled') && activeSize === availablePizzaSizes[idx]) {
+            if (!sizes.includes(availableSizes[idx])) classNames.push('disabled')
+            if (!classNames.includes('disabled') && activeSize === availableSizes[idx]) {
               classNames.push('active')
             }
 
@@ -87,9 +102,11 @@ const PizzaBlock: React.FC<PizzaBlockPropsTypes> = (props): JSX.Element => {
       </div>
 
       <div className='pizza-block__bottom'>
-        <div className='pizza-block__price'>от {price} ₽</div>
+        <div className='pizza-block__price'>
+          <span>up to</span> &#36;{price}
+        </div>
 
-        <div className='button button--outline button--add'>
+        <Button onClick={addPizzaToCart} className='button--add' outline>
           <svg
             width='12'
             height='12'
@@ -101,11 +118,8 @@ const PizzaBlock: React.FC<PizzaBlockPropsTypes> = (props): JSX.Element => {
               fill='white'
             />
           </svg>
-
-          <span>Добавить</span>
-
-          <i>2</i>
-        </div>
+          <span>Add to Cart</span> {amountOfItemsInCart ? <i>{amountOfItemsInCart}</i> : null}
+        </Button>
       </div>
     </div>
   )

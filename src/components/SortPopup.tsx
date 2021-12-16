@@ -6,13 +6,13 @@ export enum SortParameter {
   NAME = 'name',
 }
 
-interface SortPopupPropsTypes {
+interface SortPopupPropTypes {
   items: Array<SortParameter>
   activeSortBy: SortParameter
   onSortClick: (parameter: SortParameter) => void
 }
 
-const SortPopup: React.FC<SortPopupPropsTypes> = React.memo((props): JSX.Element => {
+const SortPopup: React.FC<SortPopupPropTypes> = React.memo((props): JSX.Element => {
   const { items, activeSortBy, onSortClick } = props
   const [isOpen, setIsOpen] = useState<boolean>(false)
 

@@ -94,6 +94,30 @@
     background-color: #f24701;
   }
 
+  &--disabled {
+    border-color: #aaa;
+    opacity: 0.2;
+
+    &:hover {
+      cursor: not-allowed;
+
+      background-color: transparent;
+      svg path {
+        fill: #aaa;
+      }
+    }
+
+    &:active {
+      background-color: transparent;
+
+      transform: none;
+    }
+
+    svg path {
+      fill: #aaa;
+    }
+  }
+
   &__delimiter {
     width: 1px;
     height: 25px;
@@ -141,6 +165,11 @@
     align-items: center;
     line-height: 23px;
     padding: 12px 25px;
+    color: #fff;
+    b {
+      color: inherit;
+      font-size: 14px;
+    }
   }
 
   &--cart svg {

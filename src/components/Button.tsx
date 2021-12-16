@@ -1,16 +1,19 @@
-interface ButtonPropsTypes {
+interface ButtonPropTypes {
   href?: string
   className: string
   onClick?: () => void
   children?: React.ReactNode
   outline?: boolean
+  disabled?: boolean
 }
 
-const Button: React.FC<ButtonPropsTypes> = (props): JSX.Element => {
-  const { href, onClick, children, outline, className } = props
+const Button: React.FC<ButtonPropTypes> = (props): JSX.Element => {
+  const { href, onClick, children, outline, className, disabled } = props
 
   const classNames = ['button', className]
   outline && classNames.push('button--outline')
+  disabled && classNames.push('button--disabled')
+
   if (href === '') {
     return (
       <span onClick={onClick} className={classNames.join(' ')}>
@@ -27,9 +30,10 @@ const Button: React.FC<ButtonPropsTypes> = (props): JSX.Element => {
 
 Button.defaultProps = {
   href: '',
-  outline: false,
   className: '',
   onClick: () => {},
+  outline: false,
+  disabled: false,
 }
 
 export default Button

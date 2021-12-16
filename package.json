@@ -72,10 +72,11 @@
     "workbox-webpack-plugin": "5.1.4"
   },
   "scripts": {
-    "start": "node scripts/start.js",
+    "dev": "node scripts/start.js",
     "build": "node scripts/build.js",
     "test": "node scripts/test.js",
-    "serve": "npx json-server --watch public/db.json -p 80"
+    "serve": "npx json-server --watch public/db.json -p 80",
+    "start": "npm-run-all --parallel dev serve"
   },
   "eslintConfig": {
     "extends": [
@@ -83,6 +84,7 @@
       "react-app/jest"
     ]
   },
+  "proxy": "http://localhost:80",
   "browserslist": {
     "production": [
       ">0.2%",

@@ -2,11 +2,11 @@ import axios from 'axios'
 import { Dispatch } from 'redux'
 
 import Pizza from '../../models/Pizza'
-import { availableAction, CATEGORIES } from '../../constants'
+import { availableActions, CATEGORIES } from '../../utils/constants'
 import { SortParameter } from '../../components/SortPopup'
 
 export const fetchPizza = (category: string, sortBy: SortParameter) => (dispatch: Dispatch) => {
-  let url = `http://localhost:80/pizzas${
+  let url = `/pizzas${
     category !== CATEGORIES[0] ? '?category=' + category + '&' : '?'
   }_sort=${sortBy}&_order=${sortBy === SortParameter.NAME ? 'asc' : 'desc'}`
 
@@ -17,14 +17,14 @@ export const fetchPizza = (category: string, sortBy: SortParameter) => (dispatch
 
 export const setPizza = (payload: Array<Pizza>) => {
   return {
-    type: availableAction.SET_PIZZA,
+    type: availableActions.SET_PIZZA,
     payload,
   }
 }
 
 export const setIsLoaded = (payload: boolean) => {
   return {
-    type: availableAction.SET_IS_LOADED,
+    type: availableActions.SET_IS_LOADED,
     payload,
   }
 }

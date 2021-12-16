@@ -1,5 +1,5 @@
 import { AnyAction } from 'redux'
-import { availableAction } from '../../constants'
+import { availableActions } from '../../utils/constants'
 
 const initialState = {
   items: [],
@@ -8,13 +8,13 @@ const initialState = {
 
 const pizza = (state = initialState, action: AnyAction) => {
   switch (action.type) {
-    case availableAction.SET_PIZZA:
+    case availableActions.SET_PIZZA:
       return {
         ...state,
         items: action.payload,
         isLoaded: true,
       }
-    case availableAction.SET_IS_LOADED:
+    case availableActions.SET_IS_LOADED:
       return {
         ...state,
         isLoaded: action.payload,
