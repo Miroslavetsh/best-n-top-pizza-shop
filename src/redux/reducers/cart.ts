@@ -105,7 +105,7 @@ const cart = (state = initialState, action: AnyAction) => {
             totalCount: itemsWithoutRemovedPizza.length,
           },
         },
-        totalPrice: state.totalPrice - getTotalPrice(itemsWithoutRemovedPizza),
+        totalPrice: state.totalPrice - state.items[action.payload].items[0].price,
         totalCount: state.totalCount - 1,
       }
 
