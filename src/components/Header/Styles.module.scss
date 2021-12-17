@@ -1,0 +1,65 @@
+.header {
+  border-bottom: 1px solid #f6f6f6;
+  padding: 40px 0;
+
+  .container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 40px;
+  }
+
+  .logo {
+    display: flex;
+
+    img {
+      margin-right: 15px;
+      border-radius: 50%;
+    }
+
+    h1 {
+      color: #181818;
+      font-size: 14px;
+      letter-spacing: 1%;
+      text-transform: uppercase;
+      font-weight: 800;
+    }
+
+    p {
+      font-size: 28px;
+      color: #6c6c6c;
+    }
+  }
+
+  .buttonCart {
+    display: flex;
+    align-items: center;
+    padding: 12px 25px;
+
+    line-height: 23px;
+    color: #fff;
+
+    b {
+      color: inherit;
+      font-size: 14px;
+    }
+
+    svg {
+      margin-right: 8px;
+      margin-bottom: 1px;
+    }
+
+    span {
+      font-weight: 600;
+      font-size: 16px;
+    }
+  }
+
+  .delimiter {
+    width: 1px;
+    height: 25px;
+    background-color: rgba(255, 255, 255, 0.25);
+    margin-left: 14px;
+    margin-right: 14px;
+  }
+}

@@ -2,6 +2,8 @@ import React, { useEffect, useRef, useState } from 'react'
 
 import { SortParameter } from '../../utils/constants'
 
+import styles from './Styles.module.scss'
+
 interface SortPopupPropTypes {
   items: Array<SortParameter>
   activeSortBy: SortParameter
@@ -39,10 +41,10 @@ const SortPopup: React.FC<SortPopupPropTypes> = React.memo((props): JSX.Element 
   }
 
   return (
-    <div className='sort' ref={sortRef}>
-      <div className='sort__label'>
+    <div className={styles.sort} ref={sortRef}>
+      <div className={styles.label}>
         <svg
-          className={isOpen ? 'rotated' : ''}
+          className={isOpen ? styles.rotated : ''}
           width='10'
           height='6'
           viewBox='0 0 10 6'
@@ -56,22 +58,22 @@ const SortPopup: React.FC<SortPopupPropTypes> = React.memo((props): JSX.Element 
 
         {items.length ? (
           <>
-            <b>Сортировка по:</b>
+            <b>Sort by:</b>
             <span onClick={togglePopupVisibility}>{activeSortBy}</span>
           </>
         ) : (
-          'Нет параметров сортировки'
+          'No sort parameters'
         )}
       </div>
 
       {isOpen && (
-        <div className='sort__popup'>
+        <div className={styles.popup}>
           <ul>
             {items.map((parameter, idx) => {
               return (
                 <li
                   key={parameter}
-                  className={items.indexOf(activeSortBy) === idx ? 'active' : ''}
+                  className={items.indexOf(activeSortBy) === idx ? styles.active : ''}
                   onClick={handleParameterClick(parameter)}>
                   {items[idx]}
                 </li>

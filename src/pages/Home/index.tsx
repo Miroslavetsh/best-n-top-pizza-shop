@@ -2,16 +2,18 @@ import React, { useCallback, useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { Dispatch } from 'redux'
 
-import { CartItems } from '../redux/reducers/cart'
-import { setCategory, setSortBy } from '../redux/actions/filter'
-import { fetchPizza, setIsLoaded } from '../redux/actions/pizza'
-import { addPizzaToCart } from '../redux/actions/cart'
+import { CartItems } from '../../redux/reducers/cart'
+import { setCategory, setSortBy } from '../../redux/actions/filter'
+import { fetchPizza, setIsLoaded } from '../../redux/actions/pizza'
+import { addPizzaToCart } from '../../redux/actions/cart'
 
-import { Categories, SortPopup, PizzaBlock, PizzaBlockPlaceholder } from '../components'
-import { CATEGORIES, SORT_PARAMETER, PIZZA_TO_SHOW, SortParameter } from '../utils/constants'
+import { Categories, SortPopup, PizzaBlock, PizzaBlockPlaceholder } from '../../components'
+import { CATEGORIES, SORT_PARAMETER, PIZZA_TO_SHOW, SortParameter } from '../../utils/constants'
 
-import Pizza, { ChosenPizza } from '../models/Pizza'
-import { RootState } from '../models/Store'
+import Pizza, { ChosenPizza } from '../../models/Pizza'
+import { RootState } from '../../models/Store'
+
+import styles from './Styles.module.scss'
 
 const categories = CATEGORIES
 const sortParameters = SORT_PARAMETER
@@ -55,7 +57,7 @@ const Home: React.FC = React.memo((): JSX.Element => {
 
   return (
     <div className='container'>
-      <div className='content__top'>
+      <div className={styles.top}>
         <Categories
           activeCategory={category}
           items={categories}
@@ -65,8 +67,9 @@ const Home: React.FC = React.memo((): JSX.Element => {
         <SortPopup activeSortBy={sortBy} items={sortParameters} onSortClick={handleSortClick} />
       </div>
 
-      <h2 className='content__title'>All pizza</h2>
-      <div className='content__items'>
+      <h2 className={styles.title}>All pizza</h2>
+
+      <div className={styles.items}>
         {isLoaded
           ? pizzas.map((pizza) => {
               return (

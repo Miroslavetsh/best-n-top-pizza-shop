@@ -3,6 +3,8 @@ import { Button } from '..'
 
 import Pizza, { ChosenPizza } from '../../models/Pizza'
 
+import styles from './Styles.module.scss'
+
 enum pizzaDoughTypes {
   THIN = 'thin',
   TRADITIONAL = 'traditional',
@@ -50,18 +52,18 @@ const PizzaBlock: React.FC<PizzaBlockPropTypes> = (props): JSX.Element => {
   }
 
   return (
-    <div className='pizza-block'>
-      <img className='pizza-block__image' src={imageUrl} alt='Pizza' />
+    <div className={styles.pizzaBlock}>
+      <img className={styles.image} src={imageUrl} alt='Pizza' />
 
-      <h4 className='pizza-block__title'>{name}</h4>
+      <h4 className={styles.title}>{name}</h4>
 
-      <div className='pizza-block__selector'>
+      <div className={styles.selector}>
         <ul>
           {availableDoughTypes.map((type, idx) => {
             const classNames = []
-            if (!types.includes(idx)) classNames.push('disabled')
-            if (!classNames.includes('disabled') && activeType === idx) {
-              classNames.push('active')
+            if (!types.includes(idx)) classNames.push(styles.disabled)
+            if (!classNames.includes(styles.disabled) && activeType === idx) {
+              classNames.push(styles.active)
             }
 
             const chooseDoughType = (idx: number) => {
@@ -81,9 +83,9 @@ const PizzaBlock: React.FC<PizzaBlockPropTypes> = (props): JSX.Element => {
         <ul>
           {availableSizes.map((size, idx) => {
             const classNames = []
-            if (!sizes.includes(availableSizes[idx])) classNames.push('disabled')
-            if (!classNames.includes('disabled') && activeSize === availableSizes[idx]) {
-              classNames.push('active')
+            if (!sizes.includes(availableSizes[idx])) classNames.push(styles.disabled)
+            if (!classNames.includes(styles.disabled) && activeSize === availableSizes[idx]) {
+              classNames.push(styles.active)
             }
 
             const chooseSize = (idx: number) => {
@@ -101,12 +103,12 @@ const PizzaBlock: React.FC<PizzaBlockPropTypes> = (props): JSX.Element => {
         </ul>
       </div>
 
-      <div className='pizza-block__bottom'>
-        <div className='pizza-block__price'>
+      <div className={styles.bottom}>
+        <div className={styles.price}>
           <span>up to</span> &#36;{price}
         </div>
 
-        <Button onClick={addPizzaToCart} className='button--add' outline>
+        <Button onClick={addPizzaToCart} className={styles.buttonAdd} outline>
           <svg
             width='12'
             height='12'

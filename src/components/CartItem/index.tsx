@@ -1,5 +1,7 @@
 import { Button } from '..'
 
+import styles from './Styles.module.scss'
+
 interface CartItemPropTypes {
   name: string
   type: string
@@ -24,26 +26,26 @@ const CartItem: React.FC<CartItemPropTypes> = (props): JSX.Element => {
   } = props
 
   return (
-    <div className='cart__item'>
-      <div className='cart__item-img'>
+    <div className={styles.item}>
+      <div className={styles.img}>
         <img
-          className='pizza-block__image'
           src='https://dodopizza-a.akamaihd.net/static/Img/Products/Pizza/ru-RU/b750f576-4a83-48e6-a283-5a8efb68c35d.jpg'
           alt='Pizza'
         />
       </div>
-      <div className='cart__item-info'>
+      <div className={styles.info}>
         <h3>{name}</h3>
         <p>
           With <b>{type}</b> dough, <b>{size}</b> cm size.
         </p>
       </div>
-      <div className='cart__item-count'>
+      <div className={styles.count}>
         <Button
           disabled={count === 1}
           onClick={count > 1 ? onMinusPizzaClick : () => {}}
-          className='button--circle cart__item-count-minus'
-          outline>
+          className={styles.countMinus}
+          outline
+          circle>
           <svg
             width='10'
             height='10'
@@ -63,7 +65,7 @@ const CartItem: React.FC<CartItemPropTypes> = (props): JSX.Element => {
 
         <b>{count}</b>
 
-        <Button onClick={onPlusPizzaClick} className='button--circle cart__item-count-plus' outline>
+        <Button onClick={onPlusPizzaClick} className={styles.countPlus} outline circle>
           <svg
             width='10'
             height='10'
@@ -81,11 +83,13 @@ const CartItem: React.FC<CartItemPropTypes> = (props): JSX.Element => {
           </svg>
         </Button>
       </div>
-      <div className='cart__item-price'>
+
+      <div className={styles.price}>
         <b>&#36; {price * count}</b>
       </div>
-      <div className='cart__item-remove'>
-        <Button onClick={onRemovePizzaClick} className='button--circle' outline>
+
+      <div className={styles.remove}>
+        <Button onClick={onRemovePizzaClick} className={styles.button} circle outline>
           <svg
             width='10'
             height='10'

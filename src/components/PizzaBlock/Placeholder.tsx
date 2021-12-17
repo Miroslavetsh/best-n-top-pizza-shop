@@ -1,9 +1,11 @@
 import ContentLoader from 'react-content-loader'
 
+import styles from './Styles.module.scss'
+
 const Placeholder = () => {
   return (
     <ContentLoader
-      className='pizza-block'
+      className={styles.pizzaBlock}
       speed={1}
       width={280}
       height={526}
