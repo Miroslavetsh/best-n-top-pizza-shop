@@ -165,5 +165,8 @@
     "presets": [
       "react-app"
     ]
+  },
+  "optionalDependencies": {
+    "fsevents": "^2.3.2"
   }
 }
