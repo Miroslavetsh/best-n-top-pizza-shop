@@ -4,12 +4,12 @@ const path = require('path')
 const jsonServer = require('json-server')
 
 const server = express()
-const router = jsonServer.router(path.dirname('server/index.ts') + '/public/db.json')
+const router = jsonServer.router(__dirname + '/public/db.json')
 
 const PORT = process.env.PORT || 3001
 
 const defaults = jsonServer.defaults({
-  static: './build'
+  static: './build',
 })
 
 // middleware
