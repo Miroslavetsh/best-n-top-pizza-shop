@@ -1,12 +1,62 @@
 .pizzaBlock {
-  width: 24%;
+  background-color: #fff;
+  width: 24.25%;
   min-width: 280px;
   margin: 0 auto;
-  margin-bottom: 64px;
   text-align: center;
 
+  &:hover {
+    .image {
+      transform: translateY(4px);
+    }
+  }
+
   .image {
-    width: 260px;
+    position: relative;
+    margin-bottom: 20px;
+
+    transition: all 0.3s ease-in-out;
+
+    &:hover {
+      img {
+        filter: drop-shadow(8px 8px 14px rgba(#000, 0.35));
+
+        transform: rotate(8deg) scale(1.1);
+      }
+
+      .hit {
+        top: -24px;
+      }
+    }
+
+    img {
+      display: block;
+      margin: 0 auto;
+      max-width: 260px;
+
+      filter: drop-shadow(6px 12px 8px rgba(#000, 0.3));
+
+      transition: all 0.3s ease-in-out;
+    }
+  }
+
+  .hit {
+    position: absolute;
+    top: 0;
+    right: 0;
+
+    background: red;
+
+    color: #fff;
+    padding: 4px 12px;
+    border-radius: 16px;
+    font-size: 16px;
+    text-transform: uppercase;
+    font-weight: 900;
+
+    transition: all 0.3s ease-in-out;
+
+    animation: pulse infinite 0.8s ease-in-out alternate;
   }
 
   .title {
@@ -104,5 +154,14 @@
       top: -1px;
       left: 3px;
     }
+  }
+}
+
+@keyframes pulse {
+  from {
+    transform: scale(0.98);
+  }
+  to {
+    transform: scale(1.01);
   }
 }

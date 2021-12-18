@@ -13,7 +13,7 @@ interface PizzaBlockPropTypes {
 }
 
 const PizzaBlock: React.FC<PizzaBlockPropTypes> = (props): JSX.Element => {
-  const { id, imageUrl, name, types, sizes, price } = props.pizza
+  const { id, imageUrl, name, description, types, sizes, price, popularity, hit } = props.pizza
   const { onButtonClick, amountOfItemsInCart } = props
 
   const availableDoughTypes = [pizzaDoughTypes.THIN, pizzaDoughTypes.TRADITIONAL]
@@ -43,9 +43,17 @@ const PizzaBlock: React.FC<PizzaBlockPropTypes> = (props): JSX.Element => {
 
   return (
     <div className={styles.pizzaBlock}>
-      <img className={styles.image} src={imageUrl} alt='Pizza' />
+      <div className={styles.image}>
+        <img src={imageUrl} alt='Pizza' />
+
+        {hit && <span className={styles.hit}>Hit!</span>}
+      </div>
 
       <h4 className={styles.title}>{name}</h4>
+
+      <p className={styles.description}>{description}</p>
+
+      <p className={styles.popularity}>{popularity} / 10 stars</p>
 
       <div className={styles.selector}>
         <ul>

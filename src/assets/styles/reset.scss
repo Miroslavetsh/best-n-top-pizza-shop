@@ -4,7 +4,6 @@
   list-style: none;
   outline: none;
   font-family: 'Proxima Nova', Roboto, system-ui, Tahoma, sans-serif;
-  -webkit-box-sizing: border-box;
   box-sizing: border-box;
 }
 html {
@@ -13,10 +12,8 @@ html {
 }
 body {
   padding: 50px 0;
-  -moz-osx-font-smoothing: grayscale;
-  -webkit-font-smoothing: antialiased;
-  color: #232323;
-  background-color: #ffdf8c;
+  background: #212121;
+  color: #333;
 }
 a,
 span,
