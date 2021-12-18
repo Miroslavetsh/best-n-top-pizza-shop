@@ -1,9 +1,9 @@
 import { Link } from 'react-router-dom'
 import { useSelector } from 'react-redux'
 
-import { RootState } from '../../models/Store'
-
 import Button from '../Button'
+
+import { RootState } from '../../models/Store'
 
 import styles from './Styles.module.scss'
 
