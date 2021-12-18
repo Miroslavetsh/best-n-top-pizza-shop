@@ -3,12 +3,13 @@ import { Dispatch } from 'redux'
 
 import Pizza from '../../models/Pizza'
 import { availableActions, CATEGORIES, SortParameter } from '../../utils/constants'
-import {  } from '../../components/SortPopup'
 
 export const fetchPizza = (category: string, sortBy: SortParameter) => (dispatch: Dispatch) => {
-  let url = `/pizzas${
-    category !== CATEGORIES[0] ? '?category=' + category + '&' : '?'
-  }_sort=${sortBy}&_order=${sortBy === SortParameter.NAME ? 'asc' : 'desc'}`
+  const getHostname = () => (process.env.NODE_ENV === 'development' ? 'http://localhost:3001' : '')
+  const getCategories = () => (category !== CATEGORIES[0] ? '?category=' + category + '&' : '?')
+  const getOrder = () => (sortBy === SortParameter.NAME ? 'asc' : 'desc')
+
+  const url = `${getHostname()}/pizzas${getCategories()}_sort=${sortBy}&_order=${getOrder()}`
 
   axios.get(url).then(({ data }) => {
     dispatch(setPizza(data))
