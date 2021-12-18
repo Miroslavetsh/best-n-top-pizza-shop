@@ -33,12 +33,14 @@ const CartItem: React.FC<CartItemPropTypes> = (props): JSX.Element => {
           alt='Pizza'
         />
       </div>
+
       <div className={styles.info}>
         <h3>{name}</h3>
         <p>
           With <b>{type}</b> dough, <b>{size}</b> cm size.
         </p>
       </div>
+
       <div className={styles.count}>
         <Button
           disabled={count === 1}

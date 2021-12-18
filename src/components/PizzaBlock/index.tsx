@@ -1,20 +1,10 @@
 import React, { useState } from 'react'
-import { Button } from '..'
 
+import { Button } from '..'
 import Pizza, { ChosenPizza } from '../../models/Pizza'
+import { pizzaDoughTypes, pizzaSizes } from '../../utils/constants'
 
 import styles from './Styles.module.scss'
-
-enum pizzaDoughTypes {
-  THIN = 'thin',
-  TRADITIONAL = 'traditional',
-}
-
-enum pizzaSizes {
-  SMALL = 26,
-  MEDIUM = 30,
-  BIG = 40,
-}
 
 interface PizzaBlockPropTypes {
   pizza: Pizza
