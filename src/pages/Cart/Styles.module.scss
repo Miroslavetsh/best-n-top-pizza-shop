@@ -1,0 +1,162 @@
+.cart {
+  .top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .title {
+    display: flex;
+    align-items: center;
+
+    font-size: 32px;
+
+    svg {
+      position: relative;
+      top: -2px;
+      width: 30px;
+      height: 30px;
+      margin-right: 10px;
+
+      path {
+        stroke: #232323;
+        stroke-width: 1.9;
+      }
+    }
+  }
+
+  .clear {
+    display: flex;
+    align-items: center;
+
+    cursor: pointer;
+    user-select: none;
+
+    span {
+      display: inline-block;
+      margin-left: 7px;
+
+      color: #b6b6b6;
+      font-size: 18px;
+    }
+
+    span,
+    svg,
+    path {
+      transition: all 0.15s ease-in-out;
+    }
+
+    &:hover {
+      svg path {
+        stroke: #373737;
+      }
+
+      span {
+        color: #373737;
+      }
+    }
+  }
+
+  .bottom {
+    margin: 50px 0;
+
+    .details {
+      display: flex;
+      justify-content: space-between;
+
+      span {
+        font-size: 22px;
+
+        &:last-of-type b {
+          color: #fe5f1e;
+        }
+      }
+    }
+  }
+
+  .buttons {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 40px;
+  }
+
+  .blackButton {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 210px;
+
+    border-color: #ddd;
+
+    &:hover {
+      background-color: #111;
+      border-color: #111;
+
+      span {
+        color: #f6f6f6;
+      }
+    }
+
+    span {
+      color: #c3c3c3;
+      font-weight: 500;
+      font-weight: 600;
+    }
+
+    svg {
+      margin-right: 12px;
+
+      path {
+        fill: transparent;
+        stroke-width: 2;
+      }
+    }
+  }
+
+  .payButton {
+    width: 210px;
+    padding: 16px;
+
+    font-size: 16px;
+    font-weight: 600;
+  }
+
+  .empty {
+    margin: 0 auto;
+    width: 560px;
+    text-align: center;
+    padding: 40px 0;
+
+    h2 {
+      margin-bottom: 10px;
+
+      font-size: 32px;
+    }
+
+    p {
+      font-size: 18px;
+      line-height: 145.4%;
+      letter-spacing: 0.01em;
+      color: #777777;
+    }
+
+    i {
+      position: relative;
+      top: 2px;
+    }
+
+    img {
+      display: block;
+      width: 300px;
+      margin: 45px auto 60px;
+    }
+
+    .backButton {
+      padding: 12px 0 14px;
+      width: 230px;
+      margin: 0 auto;
+      font-weight: 600;
+      font-size: 18px;
+    }
+  }
+}

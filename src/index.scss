@@ -1,19 +1,12 @@
 @import 'assets/styles/fonts.scss';
 @import 'assets/styles/reset.scss';
 
-@import 'assets/styles/header.scss';
-@import 'assets/styles/button.scss';
-@import 'assets/styles/categories.scss';
-@import 'assets/styles/sort.scss';
-@import 'assets/styles/pizza-block.scss';
-@import 'assets/styles/content.scss';
-
 .wrapper {
   width: calc(100vw - 100px);
   height: 100%;
   background-color: #fff;
   margin: 0 auto;
-  border-radius: 10px;
+  border-radius: 4px;
   max-width: 1400px;
 }
 
@@ -22,7 +15,7 @@
   margin: 0 auto;
   &--cart {
     max-width: 820px;
-    margin: 90px auto;
+    margin: 30px auto;
     .content__title {
       margin: 0;
     }
