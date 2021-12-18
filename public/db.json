@@ -96,29 +96,29 @@
       "name": "Vegetables & mushrooms 🌱",
       "types": [1],
       "sizes": [40],
-      "price": 28,
+      "price": 36,
       "category": "Vegan",
-      "popularity": 7
+      "popularity": 5
     },
     {
       "id": 10,
       "imageUrl": "https://dodopizza.azureedge.net/static/Img/Products/Pizza/ru-RU/30367198-f3bd-44ed-9314-6f717960da07.jpg",
-      "name": "Vegetables & mushrooms 🌱 (2)",
+      "name": "Vegetables & mushrooms 🌱",
       "types": [0],
       "sizes": [30],
       "price": 28,
       "category": "Vegan",
-      "popularity": 7
+      "popularity": 3
     },
     {
       "id": 11,
-      "imageUrl": "https://dodopizza.azureedge.net/static/Img/Products/Pizza/ru-RU/30367198-f3bd-44ed-9314-6f717960da07.jpg",
-      "name": "Vegetables & mushrooms 🌱 (3)",
+      "imageUrl": "https://dodopizza.azureedge.net/static/Img/Products/f035c7f46c0844069722f2bb3ee9f113_584x584.jpeg",
+      "name": "Peperoni Fresh & spice",
       "types": [1],
       "sizes": [26],
-      "price": 28,
-      "category": "Vegan",
-      "popularity": 7
+      "price": 60,
+      "category": "Meat",
+      "popularity": 8
     }
   ]
 }

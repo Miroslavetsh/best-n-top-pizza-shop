@@ -1,18 +1,22 @@
+import styles from './Styles.module.scss'
+
 interface ButtonPropTypes {
+  className?: string
   href?: string
-  className: string
   onClick?: () => void
   children?: React.ReactNode
   outline?: boolean
   disabled?: boolean
+  circle?: boolean
 }
 
 const Button: React.FC<ButtonPropTypes> = (props): JSX.Element => {
-  const { href, onClick, children, outline, className, disabled } = props
+  const { href, onClick, children, outline, className, disabled, circle } = props
 
-  const classNames = ['button', className]
-  outline && classNames.push('button--outline')
-  disabled && classNames.push('button--disabled')
+  const classNames = [styles.button, className]
+  outline && classNames.push(styles.outline)
+  disabled && classNames.push(styles.disabled)
+  circle && classNames.push(styles.circle)
 
   if (href === '') {
     return (
@@ -34,6 +38,7 @@ Button.defaultProps = {
   onClick: () => {},
   outline: false,
   disabled: false,
+  circle: false,
 }
 
 export default Button

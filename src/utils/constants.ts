@@ -1,5 +1,3 @@
-import { SortParameter } from '../components/SortPopup'
-
 export enum availableActions {
   SET_SORT_BY = 'SET_SORT_BY',
   SET_CATEGORY = 'SET_CATEGORY',
@@ -18,6 +16,12 @@ export enum availableActions {
 export const PIZZA_TO_SHOW = 12
 
 export const CATEGORIES: Array<string> = ['All', 'Meat', 'Vegan', 'Grill', 'Spicy', 'Closed']
+
+export enum SortParameter {
+  POPULARITY = 'popularity',
+  PRICE = 'price',
+  NAME = 'name',
+}
 
 export const SORT_PARAMETER: Array<SortParameter> = [
   SortParameter.POPULARITY,

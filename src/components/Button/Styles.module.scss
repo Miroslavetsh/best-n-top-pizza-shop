@@ -1,0 +1,111 @@
+.button {
+  display: inline-block;
+  min-width: 100px;
+  padding: 10px 20px;
+
+  cursor: pointer;
+  user-select: none;
+  background-color: #fe5f1e;
+  border: 1px solid transparent;
+  border-radius: 4px;
+
+  text-align: center;
+
+  transition: background-color 0.15s ease-in-out, border-color 0.15s ease-in-out;
+
+  &:hover {
+    background-color: #f24701;
+  }
+
+  &:active {
+    background-color: #de4101;
+
+    transform: translateY(1px);
+  }
+
+  & span {
+    color: #fff;
+  }
+
+  i,
+  span,
+  path,
+  svg {
+    transition: all 0.3s ease-in-out;
+  }
+
+  &.circle {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-width: 32px;
+    width: 32px;
+    height: 32px;
+    padding: 0;
+
+    border-radius: 50%;
+    border-width: 2px;
+  }
+
+  &.black {
+    background-color: #232323;
+
+    &:hover,
+    &:active {
+      background-color: #3d3d3d;
+    }
+  }
+
+  &.outline {
+    background-color: #fff;
+    border-color: #fe5f1e;
+
+    &:hover {
+      background-color: #fe5f1e;
+
+      span {
+        color: #fff;
+      }
+
+      svg path {
+        fill: #fff;
+      }
+    }
+
+    &:active {
+      background-color: #f24701;
+    }
+
+    span {
+      color: #fe5f1e;
+    }
+
+    svg path {
+      fill: #fe5f1e;
+    }
+  }
+
+  &.disabled {
+    border-color: #aaa;
+    opacity: 0.2;
+
+    &:hover {
+      cursor: not-allowed;
+
+      background-color: transparent;
+      svg path {
+        fill: #aaa;
+      }
+    }
+
+    &:active {
+      background-color: transparent;
+
+      transform: none;
+    }
+
+    svg path {
+      fill: #aaa;
+    }
+  }
+}

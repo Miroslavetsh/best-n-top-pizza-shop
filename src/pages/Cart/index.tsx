@@ -3,15 +3,18 @@ import { useDispatch, useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
 import { Dispatch } from 'redux'
 
-import { CartItem } from '../components'
-import { ChosenPizza } from '../models/Pizza'
-import { CartState, RootState } from '../models/Store'
 import {
   clearCart,
   minusPizzaItem,
   plusPizzaItem,
   removePizzaFromCart,
-} from '../redux/actions/cart'
+} from '../../redux/actions/cart'
+
+import { Button, CartItem } from '../../components'
+import { ChosenPizza } from '../../models/Pizza'
+import { CartState, RootState } from '../../models/Store'
+
+import styles from './Styles.module.scss'
 
 const Cart: React.FC = (): JSX.Element => {
   const { totalPrice, totalCount, items } = useSelector<RootState, CartState>(({ cart }) => cart)
@@ -55,9 +58,9 @@ const Cart: React.FC = (): JSX.Element => {
     <div className='content'>
       <div className='container container--cart'>
         {totalCount > 0 && totalPrice > 0 ? (
-          <div className='cart'>
-            <div className='cart__top'>
-              <h2 className='content__title'>
+          <div className={styles.cart}>
+            <div className={styles.top}>
+              <h2 className={styles.title}>
                 <svg
                   width='18'
                   height='18'
@@ -88,7 +91,8 @@ const Cart: React.FC = (): JSX.Element => {
                 </svg>
                 Your Cart
               </h2>
-              <div className='cart__clear'>
+
+              <div className={styles.clear}>
                 <svg
                   width='20'
                   height='20'
@@ -129,7 +133,7 @@ const Cart: React.FC = (): JSX.Element => {
               </div>
             </div>
 
-            <div className='content__items'>
+            <div className={styles.items}>
               {addedPizzas.map(({ name, type, size, price, id }: ChosenPizza) => (
                 <CartItem
                   key={id}
@@ -145,55 +149,63 @@ const Cart: React.FC = (): JSX.Element => {
               ))}
             </div>
 
-            <div className='cart__bottom'>
-              <div className='cart__bottom-details'>
+            <div className={styles.bottom}>
+              <div className={styles.details}>
                 <span>
                   {' '}
                   Total pizzas count: <b>{totalCount} шт.</b>{' '}
                 </span>
+
                 <span>
                   {' '}
                   Total price: <b> &#36; {totalPrice}</b>{' '}
                 </span>
               </div>
 
-              <div className='cart__bottom-buttons'>
-                <Link to='/' className='button button--outline button--add go-back-btn'>
-                  <svg
-                    width='8'
-                    height='14'
-                    viewBox='0 0 8 14'
-                    fill='none'
-                    xmlns='http://www.w3.org/2000/svg'>
-                    <path
-                      d='M7 13L1 6.93015L6.86175 1'
-                      stroke='#D3D3D3'
-                      strokeWidth='1.5'
-                      strokeLinecap='round'
-                      strokeLinejoin='round'
-                    />
-                  </svg>
+              <div className={styles.buttons}>
+                <Link to='/'>
+                  <Button className={styles.blackButton} outline>
+                    <svg
+                      width='8'
+                      height='14'
+                      viewBox='0 0 8 14'
+                      fill='none'
+                      xmlns='http://www.w3.org/2000/svg'>
+                      <path
+                        d='M7 13L1 6.93015L6.86175 1'
+                        stroke='#D3D3D3'
+                        strokeWidth='1.5'
+                        strokeLinecap='round'
+                        strokeLinejoin='round'
+                      />
+                    </svg>
 
-                  <span>Continue Shopping</span>
+                    <span>Continue Shopping</span>
+                  </Button>
                 </Link>
 
-                <div className='button pay-btn'>
+                <Button className={styles.payButton}>
                   <span>Buy NOW</span>
-                </div>
+                </Button>
               </div>
             </div>
           </div>
         ) : (
-          <div className='cart cart--empty'>
+          <div className={[styles.cart, styles.empty].join(' ')}>
             <h2>Cart is Empty now 😕</h2>
+
             <p>
               You probably haven't ordered a pizza yet.
               <br />
               To order a pizza, go to the home page.
             </p>
+
             <img src='/img/empty-cart.png' alt='Empty cart' />
-            <Link to='/' className='button button--black'>
-              <span>Get Back</span>
+
+            <Link to='/'>
+              <Button className={[styles.backButton, styles.blackButton].join(' ')}>
+                <span>Get Back</span>
+              </Button>
             </Link>
           </div>
         )}

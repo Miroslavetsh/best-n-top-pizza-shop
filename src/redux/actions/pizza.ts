@@ -2,8 +2,8 @@ import axios from 'axios'
 import { Dispatch } from 'redux'
 
 import Pizza from '../../models/Pizza'
-import { availableActions, CATEGORIES } from '../../utils/constants'
-import { SortParameter } from '../../components/SortPopup'
+import { availableActions, CATEGORIES, SortParameter } from '../../utils/constants'
+import {  } from '../../components/SortPopup'
 
 export const fetchPizza = (category: string, sortBy: SortParameter) => (dispatch: Dispatch) => {
   let url = `/pizzas${

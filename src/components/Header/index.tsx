@@ -1,9 +1,11 @@
 import { Link } from 'react-router-dom'
 import { useSelector } from 'react-redux'
 
-import { RootState } from '../models/Store'
+import { RootState } from '../../models/Store'
 
-import Button from './Button'
+import Button from '../Button'
+
+import styles from './Styles.module.scss'
 
 const Header: React.FC = (): JSX.Element => {
   const { totalCount, totalPrice } = useSelector<
@@ -12,28 +14,28 @@ const Header: React.FC = (): JSX.Element => {
   >(({ cart }) => cart)
 
   return (
-    <div className='header'>
-      <div className='container'>
+    <div className={styles.header}>
+      <div className={styles.container}>
         <Link to='/'>
-          <div className='header__logo'>
+          <div className={styles.logo}>
             <img width='38' src='/img/pizza-logo.svg' alt='Pizza logo' />
 
             <div>
-              <h1>React Pizza</h1>
+              <h1>Best & Top Pizza Shop</h1>
 
-              <p>самая вкусная пицца во вселенной</p>
+              <p>The Beast Pizza In The World</p>
             </div>
           </div>
         </Link>
 
-        <div className='header__cart'>
+        <div>
           <Link to={totalCount > 0 && totalPrice > 0 ? '/cart' : '/'}>
-            <Button className='button--cart'>
+            <Button className={styles.buttonCart}>
               {totalPrice && totalCount ? (
                 <>
                   <span>$ {totalPrice}</span>
 
-                  <div className='button__delimiter'></div>
+                  <div className={styles.delimiter}></div>
 
                   <svg
                     width='18'
