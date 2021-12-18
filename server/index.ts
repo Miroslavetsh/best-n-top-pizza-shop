@@ -9,7 +9,7 @@ const router = jsonServer.router(__dirname + '/public/db.json')
 const PORT = process.env.PORT || 3001
 
 const defaults = jsonServer.defaults({
-  static: './build',
+  static: './client/build',
 })
 
 // middleware
