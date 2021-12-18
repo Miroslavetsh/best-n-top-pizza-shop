@@ -1,4 +1,5 @@
 import { AnyAction } from 'redux'
+
 import { availableActions, SortParameter } from '../../utils/constants'
 
 const initialState = {

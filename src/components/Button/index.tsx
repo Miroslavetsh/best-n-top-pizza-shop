@@ -25,6 +25,7 @@ const Button: React.FC<ButtonPropTypes> = (props): JSX.Element => {
       </span>
     )
   }
+
   return (
     <a href={href} onClick={onClick} className={classNames.join(' ')}>
       {children}
@@ -33,8 +34,8 @@ const Button: React.FC<ButtonPropTypes> = (props): JSX.Element => {
 }
 
 Button.defaultProps = {
-  href: '',
   className: '',
+  href: '',
   onClick: () => {},
   outline: false,
   disabled: false,

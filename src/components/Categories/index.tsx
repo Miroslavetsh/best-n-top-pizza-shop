@@ -1,6 +1,7 @@
 import React from 'react'
 
 import styles from './Styles.module.scss'
+
 interface CategoriesPropTypes {
   items: Array<string>
   onCategoryClick: (item: string) => void
