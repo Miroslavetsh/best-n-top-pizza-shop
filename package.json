@@ -1,0 +1,26 @@
+{
+  "name": "beast-n-top-pizza-shop",
+  "version": "1.0.0",
+  "description": "This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).",
+  "main": "index.ts",
+  "dependencies": {
+    "@types/express": "^4.17.13",
+    "cors": "^2.8.5",
+    "express": "^4.17.2",
+    "json-server": "^0.17.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "serve": "node ./server/index.ts"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Miroslavetsh/dodo-pizza.git"
+  },
+  "author": "Miroslav <dfgshte@gmail.com>",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Miroslavetsh/dodo-pizza/issues"
+  },
+  "homepage": "https://github.com/Miroslavetsh/dodo-pizza#readme"
+}

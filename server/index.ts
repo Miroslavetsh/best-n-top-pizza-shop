@@ -18,5 +18,5 @@ server.use(defaults)
 server.use('/', router)
 
 server.listen(PORT, () => {
-  console.log(`Server is Running... on port ${PORT}`)
+  console.log(`Server is Running on port ${PORT}...`)
 })
