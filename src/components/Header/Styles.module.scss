@@ -1,8 +1,7 @@
 @import '../../assets/styles/variables.scss';
 
 .header {
-  border-bottom: 1px solid #f6f6f6;
-  padding: 40px 0;
+  padding: 12px 0;
 
   .container {
     display: flex;
@@ -53,11 +52,21 @@
         opacity: 0.15;
         pointer-events: none;
       }
+
+      @media screen and (max-width: 520px) {
+        display: none;
+      }
     }
   }
 
   .left {
     display: flex;
+
+    .phrase {
+      @media screen and (max-width: 768px) {
+        display: none;
+      }
+    }
 
     .phrase h2 {
       color: $secondaryTextColor;
@@ -73,6 +82,10 @@
 
     line-height: 23px;
     color: $secondaryTextColor;
+
+    @media screen and (max-width: 520px) {
+      padding: 4px 16px;
+    }
 
     b {
       color: inherit;
@@ -96,5 +109,10 @@
     background-color: rgba($accentColor, 0.5);
     margin-left: 22px;
     margin-right: 22px;
+
+    @media screen and (max-width: 520px) {
+      margin-left: 12px;
+      margin-right: 12px;
+    }
   }
 }
