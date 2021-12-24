@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom'
 import { useSelector } from 'react-redux'
 
-import Button from '../Button'
+import { Container, Button } from '..'
 
 import { RootState } from '../../models/Store'
 
@@ -14,19 +14,27 @@ const Header: React.FC = (): JSX.Element => {
   >(({ cart }) => cart)
 
   return (
-    <div className={styles.header}>
-      <div className={styles.container}>
-        <Link to='/'>
-          <div className={styles.logo}>
-            <img width='38' src='/img/pizza-logo.svg' alt='Pizza logo' />
+    <header className={styles.header}>
+      <Container className={styles.container}>
+        <div className={styles.left}>
+          <Link to='/'>
+            <div className={styles.logo}>
+              <img width='38' src='/img/pizza-logo.svg' alt='Pizza logo' />
 
-            <div>
-              <h1>Best & Top Pizza Shop</h1>
+              <div className={styles.typographic}>
+                <p>best & top</p>
 
-              <p>The Beast Pizza In The World</p>
+                <h1>Pizza Shop</h1>
+              </div>
             </div>
+          </Link>
+
+          <div className={styles.phrase}>
+            <h2>
+              Welcome To <strong>Our</strong> Shop
+            </h2>
           </div>
-        </Link>
+        </div>
 
         <div>
           <Link to={totalCount > 0 && totalPrice > 0 ? '/cart' : '/'}>
@@ -70,14 +78,14 @@ const Header: React.FC = (): JSX.Element => {
                 </>
               ) : (
                 <>
-                  Start &nbsp;<b>YOUR</b>&nbsp; Shopping
+                  Start&nbsp;<b>YOUR</b>&nbsp;Shopping
                 </>
               )}
             </Button>
           </Link>
         </div>
-      </div>
-    </div>
+      </Container>
+    </header>
   )
 }
 
