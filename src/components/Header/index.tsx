@@ -41,7 +41,7 @@ const Header: React.FC = (): JSX.Element => {
             <Button className={styles.buttonCart}>
               {totalPrice && totalCount ? (
                 <>
-                  <span>$ {totalPrice}</span>
+                  <span>${totalPrice}</span>
 
                   <div className={styles.delimiter}></div>
 
