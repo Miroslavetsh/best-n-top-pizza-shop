@@ -39,3 +39,8 @@ export enum pizzaDoughTypes {
   THIN = 'thin',
   TRADITIONAL = 'traditional',
 }
+
+export type SubmissionFilling = {
+  text: string
+  callback: () => void
+}
