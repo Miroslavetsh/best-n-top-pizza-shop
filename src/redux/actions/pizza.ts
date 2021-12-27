@@ -5,15 +5,20 @@ import Pizza from '../../models/Pizza'
 import { availableActions, CATEGORIES, SortParameter } from '../../utils/constants'
 
 export const fetchPizza = (category: string, sortBy: SortParameter) => (dispatch: Dispatch) => {
-  const getHostname = () => (process.env.NODE_ENV === 'development' ? 'http://localhost:3001' : '')
-  const getCategories = () => (category !== CATEGORIES[0] ? '?category=' + category + '&' : '?')
-  const getOrder = () => (sortBy === SortParameter.NAME ? 'asc' : 'desc')
+  const url = process.env.NODE_ENV === 'development' ? 'http://localhost:3001/pizzas' : '/pizzas'
 
-  const url = `${getHostname()}/pizzas${getCategories()}_sort=${sortBy}&_order=${getOrder()}`
-
-  axios.get(url).then(({ data }) => {
-    dispatch(setPizza(data))
-  })
+  axios
+    .get(url, {
+      params: {
+        // If category is all -> make category equal null
+        category: category !== CATEGORIES[0] ? category : null,
+        _sort: sortBy,
+        _order: sortBy === SortParameter.NAME ? 'asc' : 'desc',
+      },
+    })
+    .then(({ data }) => {
+      dispatch(setPizza(data))
+    })
 }
 
 export const setPizza = (payload: Array<Pizza>) => ({
