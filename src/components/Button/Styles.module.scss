@@ -61,10 +61,10 @@
 
   &.outline {
     background-color: #fff;
-    border-color: #fe5f1e;
+    border-color: $accentColor;
 
     &:hover {
-      background-color: #fe5f1e;
+      background-color: $accentColor;
 
       span {
         color: #fff;
@@ -76,15 +76,15 @@
     }
 
     &:active {
-      background-color: #f24701;
+      background-color: $accentColor;
     }
 
     span {
-      color: #fe5f1e;
+      color: $accentColor;
     }
 
     svg path {
-      fill: #fe5f1e;
+      fill: $accentColor;
     }
   }
 

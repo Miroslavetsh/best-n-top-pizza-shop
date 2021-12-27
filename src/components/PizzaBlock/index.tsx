@@ -46,14 +46,27 @@ const PizzaBlock: React.FC<PizzaBlockPropTypes> = (props): JSX.Element => {
       <div className={styles.image}>
         <img src={imageUrl} alt='Pizza' />
 
-        {hit && <span className={styles.hit}>Hit!</span>}
+        {hit && <span className={styles.hit}>Hit</span>}
+
+        <p className={styles.popularity}>
+          <strong>{popularity}</strong> / 10
+          <svg
+            width='12'
+            height='11'
+            viewBox='0 0 12 11'
+            fill='none'
+            xmlns='http://www.w3.org/2000/svg'>
+            <path
+              d='M6 0L7.34708 4.1459H11.7063L8.17963 6.7082L9.52671 10.8541L6 8.2918L2.47329 10.8541L3.82037 6.7082L0.293661 4.1459H4.65292L6 0Z'
+              fill='#FFD700'
+            />
+          </svg>
+        </p>
       </div>
 
-      <h4 className={styles.title}>{name}</h4>
+      <h4 className={styles.name}>{name}</h4>
 
       <p className={styles.description}>{description}</p>
-
-      <p className={styles.popularity}>{popularity} / 10 stars</p>
 
       <div className={styles.selector}>
         <ul>

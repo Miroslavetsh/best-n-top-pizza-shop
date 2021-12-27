@@ -2,7 +2,7 @@ import ContentLoader from 'react-content-loader'
 
 import styles from './Styles.module.scss'
 
-const Placeholder = () => {
+const Placeholder: React.FC = (): JSX.Element => {
   return (
     <ContentLoader
       className={styles.pizzaBlock}
