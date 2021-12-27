@@ -3,6 +3,7 @@ import React, { useState } from 'react'
 import { Button } from '..'
 import Pizza, { ChosenPizza } from '../../models/Pizza'
 import { pizzaDoughTypes, pizzaSizes } from '../../utils/constants'
+import ImagePlaceholder from './ImagePlaceholder'
 
 import styles from './Styles.module.scss'
 
@@ -13,7 +14,7 @@ interface PizzaBlockPropTypes {
 }
 
 const PizzaBlock: React.FC<PizzaBlockPropTypes> = (props): JSX.Element => {
-  const { id, imageUrl, name, types, sizes, price } = props.pizza
+  const { id, imageUrl, name, description, types, sizes, price, popularity, hit } = props.pizza
   const { onButtonClick, amountOfItemsInCart } = props
 
   const availableDoughTypes = [pizzaDoughTypes.THIN, pizzaDoughTypes.TRADITIONAL]
@@ -21,6 +22,7 @@ const PizzaBlock: React.FC<PizzaBlockPropTypes> = (props): JSX.Element => {
 
   const [activeType, setActiveType] = useState<number>(types[0])
   const [activeSize, setActiveSize] = useState<number>(sizes[0])
+  const [isImageLoaded, setIsImageLoaded] = useState<boolean>(false)
 
   const selectPizzaDoughType = (idx: number) => {
     setActiveType(idx)
@@ -28,6 +30,10 @@ const PizzaBlock: React.FC<PizzaBlockPropTypes> = (props): JSX.Element => {
 
   const selectPizzaSize = (idx: number) => {
     setActiveSize(availableSizes[idx])
+  }
+
+  const toggleImageVisibility = () => {
+    setIsImageLoaded(true)
   }
 
   const addPizzaToCart = () => {
@@ -43,9 +49,33 @@ const PizzaBlock: React.FC<PizzaBlockPropTypes> = (props): JSX.Element => {
 
   return (
     <div className={styles.pizzaBlock}>
-      <img className={styles.image} src={imageUrl} alt='Pizza' />
+      <div className={styles.image}>
+        <img src={imageUrl} alt='Pizza' onLoad={toggleImageVisibility} />
+        {isImageLoaded ? null : <ImagePlaceholder />}
 
-      <h4 className={styles.title}>{name}</h4>
+        {hit && <span className={styles.hit}>Hit</span>}
+
+        <p className={styles.popularity}>
+          <strong>{popularity}</strong> / 10
+          <svg
+            width='12'
+            height='11'
+            viewBox='0 0 12 11'
+            fill='none'
+            xmlns='http://www.w3.org/2000/svg'>
+            <path
+              d='M6 0L7.34708 4.1459H11.7063L8.17963 6.7082L9.52671 10.8541L6 8.2918L2.47329 10.8541L3.82037 6.7082L0.293661 4.1459H4.65292L6 0Z'
+              fill='#FFD700'
+            />
+          </svg>
+        </p>
+      </div>
+
+      <div className={styles.text}>
+        <h4 className={styles.name}>{name}</h4>
+
+        <p className={styles.description}>{description}</p>
+      </div>
 
       <div className={styles.selector}>
         <ul>

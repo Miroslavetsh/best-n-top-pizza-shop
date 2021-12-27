@@ -5,7 +5,7 @@ import { Header } from './components'
 
 const App: React.FC = () => {
   return (
-    <div className='wrapper'>
+    <div className='page'>
       <Header />
 
       <div className='content'>

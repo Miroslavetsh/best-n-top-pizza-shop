@@ -1,43 +1,96 @@
+@import '../../assets/styles/variables.scss';
+
 .header {
-  border-bottom: 1px solid #f6f6f6;
-  padding: 40px 0;
+  padding: 12px 0;
 
   .container {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 0 40px;
   }
 
   .logo {
     display: flex;
+    position: relative;
+
+    color: $secondaryTextColor;
 
     img {
-      margin-right: 15px;
-      border-radius: 50%;
-    }
-
-    h1 {
-      color: #181818;
-      font-size: 14px;
-      letter-spacing: 1%;
-      text-transform: uppercase;
-      font-weight: 800;
+      max-width: 28px;
+      margin-right: 8px;
     }
 
     p {
-      font-size: 28px;
-      color: #6c6c6c;
+      font-size: 8px;
+      letter-spacing: 0.24em;
+      color: inherit;
+      line-height: 1;
+    }
+
+    h1 {
+      line-height: 1;
+      letter-spacing: 0.095em;
+      font-size: 24px;
+      font-family: $headingFont;
+      color: inherit;
+    }
+
+    .typographic {
+      position: relative;
+      padding-right: 38px;
+      margin-right: 38px;
+
+      &:after {
+        content: '';
+        width: 1px;
+        height: 100%;
+        position: absolute;
+        top: 0;
+        right: 0;
+
+        background-color: #fff;
+        opacity: 0.15;
+        pointer-events: none;
+      }
+
+      @media screen and (max-width: 520px) {
+        display: none;
+      }
+    }
+  }
+
+  .left {
+    display: flex;
+
+    .phrase {
+      @media screen and (max-width: 768px) {
+        display: none;
+      }
+    }
+
+    .phrase h2 {
+      color: $secondaryTextColor;
+      font-weight: 100;
+      font-size: 20px;
     }
   }
 
   .buttonCart {
     display: flex;
     align-items: center;
-    padding: 12px 25px;
+    height: 44px;
 
-    line-height: 23px;
-    color: #fff;
+    color: $secondaryTextColor;
+
+    &:hover {
+      .delimiter {
+        background-color: $secondaryTextColor;
+      }
+    }
+
+    @media screen and (max-width: 520px) {
+      padding: 4px 16px;
+    }
 
     b {
       color: inherit;
@@ -45,21 +98,29 @@
     }
 
     svg {
+      max-width: 12px;
       margin-right: 8px;
       margin-bottom: 1px;
     }
 
     span {
       font-weight: 600;
-      font-size: 16px;
+      font-size: 12px;
     }
   }
 
   .delimiter {
-    width: 1px;
-    height: 25px;
-    background-color: rgba(255, 255, 255, 0.25);
-    margin-left: 14px;
-    margin-right: 14px;
+    width: 0.5px;
+    height: 26px;
+    background-color: rgba($accentColor, 0.5);
+    margin-left: 22px;
+    margin-right: 22px;
+
+    transition: background-color 0.15s ease-in-out;
+
+    @media screen and (max-width: 520px) {
+      margin-left: 12px;
+      margin-right: 12px;
+    }
   }
 }

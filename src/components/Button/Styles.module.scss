@@ -1,24 +1,27 @@
+@import '../../assets/styles/variables.scss';
+
 .button {
   display: inline-block;
-  min-width: 100px;
-  padding: 10px 20px;
+  padding: 10px 32px;
 
   cursor: pointer;
   user-select: none;
-  background-color: #fe5f1e;
-  border: 1px solid transparent;
-  border-radius: 4px;
+  background-color: transparent;
+  border: 1px solid $accentColor;
+  border-radius: 6px;
 
   text-align: center;
+  font-weight: 200;
 
-  transition: background-color 0.15s ease-in-out, border-color 0.15s ease-in-out;
+  transition: all 0.15s ease-in-out;
 
   &:hover {
-    background-color: #f24701;
+    background-color: $accentColor;
   }
 
   &:active {
-    background-color: #de4101;
+    background-color: darken($accentColor, 15%);
+    border-color: darken($accentColor, 15%);
 
     transform: translateY(1px);
   }
@@ -58,10 +61,10 @@
 
   &.outline {
     background-color: #fff;
-    border-color: #fe5f1e;
+    border-color: $accentColor;
 
     &:hover {
-      background-color: #fe5f1e;
+      background-color: $accentColor;
 
       span {
         color: #fff;
@@ -73,15 +76,15 @@
     }
 
     &:active {
-      background-color: #f24701;
+      background-color: $accentColor;
     }
 
     span {
-      color: #fe5f1e;
+      color: $accentColor;
     }
 
     svg path {
-      fill: #fe5f1e;
+      fill: $accentColor;
     }
   }
 

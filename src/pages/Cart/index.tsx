@@ -10,7 +10,7 @@ import {
   removePizzaFromCart,
 } from '../../redux/actions/cart'
 
-import { Button, CartItem } from '../../components'
+import { Button, CartItem, Container } from '../../components'
 import { ChosenPizza } from '../../models/Pizza'
 import { CartState, RootState } from '../../models/Store'
 
@@ -45,6 +45,7 @@ const Cart: React.FC = (): JSX.Element => {
     },
     [dispatch],
   )
+
   const handleMinusPizzaItemClick = useCallback(
     (id: number) => {
       return () => {
@@ -56,46 +57,16 @@ const Cart: React.FC = (): JSX.Element => {
 
   return (
     <div className='content'>
-      <div className='container container--cart'>
+      <Container>
         {totalCount > 0 && totalPrice > 0 ? (
           <div className={styles.cart}>
             <div className={styles.top}>
-              <h2 className={styles.title}>
-                <svg
-                  width='18'
-                  height='18'
-                  viewBox='0 0 18 18'
-                  fill='none'
-                  xmlns='http://www.w3.org/2000/svg'>
-                  <path
-                    d='M6.33333 16.3333C7.06971 16.3333 7.66667 15.7364 7.66667 15C7.66667 14.2636 7.06971 13.6667 6.33333 13.6667C5.59695 13.6667 5 14.2636 5 15C5 15.7364 5.59695 16.3333 6.33333 16.3333Z'
-                    stroke='white'
-                    strokeWidth='1.8'
-                    strokeLinecap='round'
-                    strokeLinejoin='round'
-                  />
-                  <path
-                    d='M14.3333 16.3333C15.0697 16.3333 15.6667 15.7364 15.6667 15C15.6667 14.2636 15.0697 13.6667 14.3333 13.6667C13.597 13.6667 13 14.2636 13 15C13 15.7364 13.597 16.3333 14.3333 16.3333Z'
-                    stroke='white'
-                    strokeWidth='1.8'
-                    strokeLinecap='round'
-                    strokeLinejoin='round'
-                  />
-                  <path
-                    d='M4.78002 4.99999H16.3334L15.2134 10.5933C15.1524 10.9003 14.9854 11.176 14.7417 11.3722C14.4979 11.5684 14.1929 11.6727 13.88 11.6667H6.83335C6.50781 11.6694 6.1925 11.553 5.94689 11.3393C5.70128 11.1256 5.54233 10.8295 5.50002 10.5067L4.48669 2.82666C4.44466 2.50615 4.28764 2.21182 4.04482 1.99844C3.80201 1.78505 3.48994 1.66715 3.16669 1.66666H1.66669'
-                    stroke='white'
-                    strokeWidth='1.8'
-                    strokeLinecap='round'
-                    strokeLinejoin='round'
-                  />
-                </svg>
-                Your Cart
-              </h2>
+              <h2 className={styles.title}>Chosen Pizza:</h2>
 
               <div className={styles.clear}>
                 <svg
-                  width='20'
-                  height='20'
+                  width='12'
+                  height='12'
                   viewBox='0 0 20 20'
                   fill='none'
                   xmlns='http://www.w3.org/2000/svg'>
@@ -152,13 +123,11 @@ const Cart: React.FC = (): JSX.Element => {
             <div className={styles.bottom}>
               <div className={styles.details}>
                 <span>
-                  {' '}
-                  Total pizzas count: <b>{totalCount} шт.</b>{' '}
+                  Total pizzas count: <strong>{totalCount} шт.</strong>
                 </span>
 
                 <span>
-                  {' '}
-                  Total price: <b> &#36; {totalPrice}</b>{' '}
+                  Total price: <strong>&#36;{totalPrice}</strong>
                 </span>
               </div>
 
@@ -192,7 +161,9 @@ const Cart: React.FC = (): JSX.Element => {
           </div>
         ) : (
           <div className={[styles.cart, styles.empty].join(' ')}>
-            <h2>Cart is Empty now 😕</h2>
+            <h2>
+              It Seems Like <strong>YOUR</strong> cart is empty 😕
+            </h2>
 
             <p>
               You probably haven't ordered a pizza yet.
@@ -204,12 +175,27 @@ const Cart: React.FC = (): JSX.Element => {
 
             <Link to='/'>
               <Button className={[styles.backButton, styles.blackButton].join(' ')}>
+                <svg
+                  width='7'
+                  height='12'
+                  viewBox='0 0 7 12'
+                  fill='none'
+                  xmlns='http://www.w3.org/2000/svg'>
+                  <path
+                    d='M6 11L1 5.94179L5.88479 1'
+                    stroke='#d3d3d3'
+                    stroke-width='1.5'
+                    stroke-linecap='round'
+                    stroke-linejoin='round'
+                  />
+                </svg>
+
                 <span>Get Back</span>
               </Button>
             </Link>
           </div>
         )}
-      </div>
+      </Container>
     </div>
   )
 }

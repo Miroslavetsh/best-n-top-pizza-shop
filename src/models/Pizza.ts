@@ -7,6 +7,8 @@ export default interface Pizza {
   price: number
   category: string
   popularity: number
+  description: string
+  hit: boolean
 }
 
 export interface ChosenPizza {
