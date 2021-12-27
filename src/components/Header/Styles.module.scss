@@ -78,9 +78,8 @@
   .buttonCart {
     display: flex;
     align-items: center;
-    padding: 8px 20px;
+    height: 44px;
 
-    line-height: 23px;
     color: $secondaryTextColor;
 
     &:hover {
