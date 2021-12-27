@@ -16,16 +16,12 @@ export const fetchPizza = (category: string, sortBy: SortParameter) => (dispatch
   })
 }
 
-export const setPizza = (payload: Array<Pizza>) => {
-  return {
-    type: availableActions.SET_PIZZA,
-    payload,
-  }
-}
+export const setPizza = (payload: Array<Pizza>) => ({
+  type: availableActions.SET_PIZZA,
+  payload,
+})
 
-export const setIsLoaded = (payload: boolean) => {
-  return {
-    type: availableActions.SET_IS_LOADED,
-    payload,
-  }
-}
+export const setIsLoaded = (payload: boolean) => ({
+  type: availableActions.SET_IS_LOADED,
+  payload,
+})

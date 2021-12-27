@@ -1,17 +1,32 @@
+@import '../../assets/styles/variables.scss';
+
 .item {
   display: flex;
+  justify-content: space-between;
   max-width: none;
   width: 100%;
-  margin-top: 30px;
-  padding-top: 30px;
+  margin-top: 8px;
+  padding-top: 8px;
 
   border-top: 1px solid #f6f6f6;
+
+  &:first-child {
+    margin-top: 20px;
+  }
+
+  @media screen and (max-width: 640px) {
+    flex-direction: column;
+    row-gap: 16px;
+  }
+
+  .left {
+    display: flex;
+  }
 
   .img {
     display: flex;
     align-items: center;
-    width: 10%;
-    margin-right: 15px;
+    margin-right: 12px;
 
     img {
       width: 80px;
@@ -23,17 +38,16 @@
     display: flex;
     flex-direction: column;
     justify-content: center;
-    width: 40%;
 
     h3 {
       font-weight: bold;
-      font-size: 22px;
+      font-size: 20px;
       line-height: 27px;
       letter-spacing: 0.01em;
     }
 
     p {
-      font-size: 18px;
+      font-size: 12px;
       color: #8d8d8d;
       b {
         font-size: inherit;
@@ -41,30 +55,67 @@
     }
   }
 
+  .controls {
+    width: 40%;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+
+    @media screen and (max-width: 640px) {
+      justify-content: flex-start;
+    }
+  }
+
   .count {
+    margin-right: 32px;
     display: flex;
     align-items: center;
     justify-content: space-between;
-    width: 13%;
+
+    span {
+      min-width: 20px;
+      width: 20px;
+      height: 20px;
+    }
+
+    svg {
+      width: 6.67px;
+      height: 6.67px;
+    }
   }
 
-  .countMinus svg path:first-of-type {
-    display: none;
+  .countMinus {
+    margin-right: 24px;
+
+    svg path:first-of-type {
+      display: none;
+    }
+  }
+
+  .countPlus {
+    margin-left: 24px;
+  }
+
+  .countMinus:hover,
+  .countPlus:hover {
+    svg path {
+      stroke: none;
+    }
   }
 
   b {
-    font-size: 22px;
+    font-size: 16px;
   }
 
   .price {
+    margin-right: 16px;
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 33%;
 
     b {
       font-weight: bold;
-      font-size: 22px;
+      font-size: 16px;
       letter-spacing: 0.01em;
     }
   }
@@ -73,10 +124,12 @@
     display: flex;
     align-items: center;
     justify-content: flex-end;
-    width: 4%;
 
     .button {
       border-color: #ddd;
+      min-width: 20px;
+      width: 20px;
+      height: 20px;
 
       &:hover,
       &:active {
@@ -84,9 +137,15 @@
         background-color: #2a2a2a;
       }
 
+      &:hover {
+        svg path {
+          stroke: none;
+        }
+      }
+
       svg {
-        width: 11.5px;
-        height: 11.5px;
+        width: 6.67px;
+        height: 6.67px;
         position: relative;
 
         transform: rotate(45deg);

@@ -32,7 +32,9 @@ const SortPopup: React.FC<SortPopupPropTypes> = React.memo((props): JSX.Element 
   }, [isOpen])
 
   const togglePopupVisibility = () => setIsOpen(!isOpen)
+
   const closePopup = () => setIsOpen(false)
+
   const handleParameterClick = (item: SortParameter) => {
     return () => {
       onSortClick(item)
@@ -59,6 +61,7 @@ const SortPopup: React.FC<SortPopupPropTypes> = React.memo((props): JSX.Element 
         {items.length ? (
           <>
             <b>Sort by:</b>
+
             <span onClick={togglePopupVisibility}>{activeSortBy}</span>
           </>
         ) : (

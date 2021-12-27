@@ -1,11 +1,11 @@
 import { Route } from 'react-router-dom'
 
-import { Header } from './components'
 import { Home, Cart } from './pages'
+import { Header } from './components'
 
 const App: React.FC = () => {
   return (
-    <div className='wrapper'>
+    <div className='page'>
       <Header />
 
       <div className='content'>

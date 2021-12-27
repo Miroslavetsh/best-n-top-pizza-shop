@@ -1,12 +1,68 @@
+@import '../../assets/styles/variables.scss';
+
+.heading {
+  max-width: 1036px;
+  margin: 56px auto 88px;
+  position: relative;
+
+  @media screen and (max-width: 520px) {
+    margin: -24px auto 48px;
+  }
+
+  h3 {
+    position: absolute;
+    top: 20%;
+
+    color: $secondaryTextColor;
+    font-size: 26px;
+    font-weight: 200;
+
+    @media screen and (max-width: 520px) {
+      top: 35%;
+      font-size: 14px;
+    }
+  }
+
+  svg {
+    max-width: 100%;
+  }
+}
+
+.catalog {
+  max-width: 1340px;
+  margin: 0 auto;
+  background: #fff;
+  border-radius: 4px;
+  position: relative;
+}
+
 .top {
+  position: absolute;
   display: flex;
   align-items: center;
   justify-content: space-between;
+
+  transform: translateY(calc(-100% - 28px));
+}
+
+.middle {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 32px;
+  padding: 16px 16px 0;
+
+  h2 {
+    font-size: 12px;
+    line-height: 1;
+    font-weight: 300;
+  }
 }
 
 .items {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: flex-start;
-  gap: 1%;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  grid-gap: 24px;
+  padding-right: 16px;
+  padding-left: 16px;
+  padding-bottom: 36px;
 }

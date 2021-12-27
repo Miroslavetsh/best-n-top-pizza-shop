@@ -28,3 +28,19 @@ export const SORT_PARAMETER: Array<SortParameter> = [
   SortParameter.PRICE,
   SortParameter.NAME,
 ]
+
+export enum pizzaSizes {
+  SMALL = 26,
+  MEDIUM = 30,
+  BIG = 40,
+}
+
+export enum pizzaDoughTypes {
+  THIN = 'thin',
+  TRADITIONAL = 'traditional',
+}
+
+export type SubmissionFilling = {
+  text: string
+  callback: () => void
+}

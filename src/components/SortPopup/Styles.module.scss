@@ -1,14 +1,20 @@
+@import '../../assets/styles/variables.scss';
+
 .sort {
   position: relative;
   .label {
     display: flex;
     align-items: center;
 
+    font-size: 12px;
+
     svg {
+      width: 8px;
       margin-right: 8px;
 
       transition: transform 0.3s ease-in-out;
       transform: rotate(180deg);
+
       &.rotated {
         transform: rotate(0deg);
       }
@@ -20,10 +26,13 @@
 
     span {
       cursor: pointer;
-
-      border-bottom: 1px dashed #fe5f1e;
-
-      color: #fe5f1e;
+      display: inline-block;
+      padding-bottom: 2px;
+      
+      border-bottom: 1px dashed $accentColor;
+      
+      font-weight: 800;
+      color: $accentColor;
     }
   }
 
@@ -32,8 +41,9 @@
     right: 0;
     overflow: hidden;
     padding: 10px 0;
-    width: 160px;
+    width: 140px;
     margin-top: 15px;
+    z-index: 100;
 
     background: #ffffff;
     box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.09);
@@ -43,9 +53,11 @@
       overflow: hidden;
 
       li {
-        padding: 12px 20px;
+        padding: 8px 20px;
 
         cursor: pointer;
+
+        font-size: 12px;
 
         &.active,
         &:hover {
@@ -54,7 +66,7 @@
 
         &.active {
           font-weight: bold;
-          color: #fe5f1e;
+          color: $accentColor;
         }
       }
     }
