@@ -94,7 +94,10 @@ const Home: React.FC = React.memo((): JSX.Element => {
         </div>
 
         <div className={styles.middle}>
-          <h2 className={styles.title}>All pizza</h2>
+          <h2>
+            <strong>Our</strong> pizza:
+          </h2>
+
           <SortPopup activeSortBy={sortBy} items={sortParameters} onSortClick={handleSortClick} />
         </div>
 
