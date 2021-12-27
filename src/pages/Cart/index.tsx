@@ -1,4 +1,4 @@
-import { useCallback } from 'react'
+import { useCallback, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
 import { Dispatch } from 'redux'
@@ -10,13 +10,19 @@ import {
   removePizzaFromCart,
 } from '../../redux/actions/cart'
 
-import { Button, CartItem, Container } from '../../components'
+import { Button, CartItem, Container, SubmissionPopup } from '../../components'
 import { ChosenPizza } from '../../models/Pizza'
 import { CartState, RootState } from '../../models/Store'
+import { SubmissionFilling } from '../../utils/constants'
 
 import styles from './Styles.module.scss'
 
 const Cart: React.FC = (): JSX.Element => {
+  const [isSubmissionOpened, setIsSubmissionOpened] = useState<boolean>(false)
+  const [submissionFilling, setSubmissionFilling] = useState<SubmissionFilling>({
+    text: '',
+    callback: () => {},
+  })
   const { totalPrice, totalCount, items } = useSelector<RootState, CartState>(({ cart }) => cart)
   const dispatch = useDispatch<Dispatch>()
 
@@ -24,18 +30,31 @@ const Cart: React.FC = (): JSX.Element => {
     .map(Number)
     .map((key) => items[key].items[0])
 
-  const handleClearCartClick = useCallback(() => {
-    if (window.confirm('Are You sure to clear all of your pizza!?')) dispatch(clearCart())
-  }, [dispatch])
+  const handleClearCartClick = () => {
+    return () => {
+      setSubmissionFilling({
+        text: 'Are You sure to clear all of your pizza!?',
+        callback: () => {
+          dispatch(clearCart())
+          setIsSubmissionOpened(false)
+        },
+      })
+      setIsSubmissionOpened(true)
+    }
+  }
 
-  const handleRemovePizzaClick = useCallback(
-    (id: number) => {
-      return () => {
-        if (window.confirm('Are You sure to remove this pizza!?')) dispatch(removePizzaFromCart(id))
-      }
-    },
-    [dispatch],
-  )
+  const handleRemovePizzaClick = (id: number) => {
+    return () => {
+      setSubmissionFilling({
+        text: 'Are You sure to remove this pizza!?',
+        callback: () => {
+          dispatch(removePizzaFromCart(id))
+          setIsSubmissionOpened(false)
+        },
+      })
+      setIsSubmissionOpened(true)
+    }
+  }
 
   const handlePlusPizzaItemClick = useCallback(
     (id: number) => {
@@ -54,6 +73,14 @@ const Cart: React.FC = (): JSX.Element => {
     },
     [dispatch],
   )
+
+  const handleSubmissionClose = () => {
+    setIsSubmissionOpened(false)
+  }
+
+  const handleSubmissionDecline = () => {
+    setIsSubmissionOpened(false)
+  }
 
   return (
     <div className='content'>
@@ -100,7 +127,7 @@ const Cart: React.FC = (): JSX.Element => {
                   />
                 </svg>
 
-                <span onClick={handleClearCartClick}>Clear the cart</span>
+                <span onClick={handleClearCartClick()}>Clear the cart</span>
               </div>
             </div>
 
@@ -158,6 +185,22 @@ const Cart: React.FC = (): JSX.Element => {
                 </Button>
               </div>
             </div>
+
+            <SubmissionPopup isOpened={isSubmissionOpened} onClose={handleSubmissionClose}>
+              <div className={styles.submission}>
+                <div className={styles.name}>{submissionFilling.text}</div>
+
+                <div className={styles.buttons}>
+                  <Button className={styles.decline} onClick={handleSubmissionDecline}>
+                    No
+                  </Button>
+
+                  <Button className={styles.confirm} onClick={submissionFilling.callback}>
+                    Yes
+                  </Button>
+                </div>
+              </div>
+            </SubmissionPopup>
           </div>
         ) : (
           <div className={[styles.cart, styles.empty].join(' ')}>
