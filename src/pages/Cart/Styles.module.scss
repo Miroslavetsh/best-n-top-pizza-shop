@@ -76,6 +76,10 @@
       display: flex;
       justify-content: space-between;
 
+      @media screen and (max-width: 420px) {
+        flex-direction: column;
+      }
+
       span {
         font-size: 12px;
         font-weight: 300;
@@ -91,6 +95,11 @@
     display: flex;
     justify-content: space-between;
     margin-top: 12px;
+
+    @media screen and (max-width: 420px) {
+      flex-direction: column-reverse;
+      gap: 12px;
+    }
   }
 
   .blackButton {
