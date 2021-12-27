@@ -142,7 +142,7 @@ const Cart: React.FC = (): JSX.Element => {
                       xmlns='http://www.w3.org/2000/svg'>
                       <path
                         d='M7 13L1 6.93015L6.86175 1'
-                        stroke='#D3D3D3'
+                        stroke='#d3d3d3'
                         strokeWidth='1.5'
                         strokeLinecap='round'
                         strokeLinejoin='round'
@@ -184,9 +184,9 @@ const Cart: React.FC = (): JSX.Element => {
                   <path
                     d='M6 11L1 5.94179L5.88479 1'
                     stroke='#d3d3d3'
-                    stroke-width='1.5'
-                    stroke-linecap='round'
-                    stroke-linejoin='round'
+                    strokeWidth='1.5'
+                    strokeLinecap='round'
+                    strokeLinejoin='round'
                   />
                 </svg>
 
