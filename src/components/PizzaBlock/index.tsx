@@ -3,6 +3,7 @@ import React, { useState } from 'react'
 import { Button } from '..'
 import Pizza, { ChosenPizza } from '../../models/Pizza'
 import { pizzaDoughTypes, pizzaSizes } from '../../utils/constants'
+import ImagePlaceholder from './ImagePlaceholder'
 
 import styles from './Styles.module.scss'
 
@@ -21,6 +22,7 @@ const PizzaBlock: React.FC<PizzaBlockPropTypes> = (props): JSX.Element => {
 
   const [activeType, setActiveType] = useState<number>(types[0])
   const [activeSize, setActiveSize] = useState<number>(sizes[0])
+  const [isImageLoaded, setIsImageLoaded] = useState<boolean>(false)
 
   const selectPizzaDoughType = (idx: number) => {
     setActiveType(idx)
@@ -28,6 +30,10 @@ const PizzaBlock: React.FC<PizzaBlockPropTypes> = (props): JSX.Element => {
 
   const selectPizzaSize = (idx: number) => {
     setActiveSize(availableSizes[idx])
+  }
+
+  const toggleImageVisibility = () => {
+    setIsImageLoaded(true)
   }
 
   const addPizzaToCart = () => {
@@ -44,7 +50,8 @@ const PizzaBlock: React.FC<PizzaBlockPropTypes> = (props): JSX.Element => {
   return (
     <div className={styles.pizzaBlock}>
       <div className={styles.image}>
-        <img src={imageUrl} alt='Pizza' />
+        <img src={imageUrl} alt='Pizza' onLoad={toggleImageVisibility} />
+        {isImageLoaded ? null : <ImagePlaceholder />}
 
         {hit && <span className={styles.hit}>Hit</span>}
 
@@ -64,9 +71,11 @@ const PizzaBlock: React.FC<PizzaBlockPropTypes> = (props): JSX.Element => {
         </p>
       </div>
 
-      <h4 className={styles.name}>{name}</h4>
+      <div className={styles.text}>
+        <h4 className={styles.name}>{name}</h4>
 
-      <p className={styles.description}>{description}</p>
+        <p className={styles.description}>{description}</p>
+      </div>
 
       <div className={styles.selector}>
         <ul>

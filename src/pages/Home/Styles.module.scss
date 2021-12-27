@@ -59,5 +59,10 @@
 }
 
 .items {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  grid-gap: 24px;
+  padding-right: 16px;
+  padding-left: 16px;
   padding-bottom: 36px;
 }

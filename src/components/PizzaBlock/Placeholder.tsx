@@ -7,16 +7,17 @@ const Placeholder: React.FC = (): JSX.Element => {
     <ContentLoader
       className={styles.pizzaBlock}
       speed={1}
-      width={280}
-      height={526}
-      viewBox='0 0 280 456'
+      width={286}
+      height={434}
+      viewBox='0 0 286 434'
       backgroundColor='#f3f3f3'
       foregroundColor='#ecebeb'>
-      <circle cx='140' cy='125' r='122' />
-      <rect x='1' y='256' rx='6' ry='6' width='280' height='20' />
-      <rect x='1' y='296' rx='6' ry='6' width='280' height='84' />
-      <rect x='1' y='390' rx='6' ry='6' width='92' height='40' />
-      <rect x='126' y='391' rx='20' ry='20' width='155' height='40' />
+      <circle cx='137' cy='113' r='100' />
+      <rect x='1' y='225' rx='3' ry='3' width='280' height='20' />
+      <rect x='1' y='296' rx='3' ry='3' width='280' height='84' />
+      <rect x='1' y='390' rx='3' ry='3' width='92' height='40' />
+      <rect x='126' y='391' rx='4' ry='4' width='155' height='40' />
+      <rect x='0' y='256' rx='3' ry='3' width='280' height='31' />
     </ContentLoader>
   )
 }
