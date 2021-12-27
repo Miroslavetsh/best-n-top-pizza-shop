@@ -67,11 +67,12 @@
       background-color: $accentColor;
 
       span {
-        color: #fff;
+        color: $secondaryTextColor;
       }
 
       svg path {
-        stroke: #fff;
+        stroke: $secondaryTextColor;
+        fill: $secondaryTextColor;
       }
     }
 
