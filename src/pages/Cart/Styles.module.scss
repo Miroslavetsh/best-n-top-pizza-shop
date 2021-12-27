@@ -118,6 +118,12 @@
       span {
         color: #f6f6f6;
       }
+
+      svg {
+        path {
+          fill: none;
+        }
+      }
     }
 
     span {
@@ -248,10 +254,10 @@
       border: 1px solid #d3d3d3;
       color: #d3d3d3;
       background: transparent;
-      
+
       &:hover {
         background: #111;
-      
+
         color: $secondaryTextColor;
       }
     }
