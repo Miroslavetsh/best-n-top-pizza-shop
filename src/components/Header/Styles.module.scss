@@ -78,10 +78,16 @@
   .buttonCart {
     display: flex;
     align-items: center;
-    padding: 12px 25px;
+    padding: 8px 20px;
 
     line-height: 23px;
     color: $secondaryTextColor;
+
+    &:hover {
+      .delimiter {
+        background-color: $secondaryTextColor;
+      }
+    }
 
     @media screen and (max-width: 520px) {
       padding: 4px 16px;
@@ -93,22 +99,25 @@
     }
 
     svg {
+      max-width: 12px;
       margin-right: 8px;
       margin-bottom: 1px;
     }
 
     span {
       font-weight: 600;
-      font-size: 16px;
+      font-size: 12px;
     }
   }
 
   .delimiter {
-    width: 1px;
+    width: 0.5px;
     height: 26px;
     background-color: rgba($accentColor, 0.5);
     margin-left: 22px;
     margin-right: 22px;
+
+    transition: background-color 0.15s ease-in-out;
 
     @media screen and (max-width: 520px) {
       margin-left: 12px;

@@ -10,7 +10,7 @@ import {
   removePizzaFromCart,
 } from '../../redux/actions/cart'
 
-import { Button, CartItem } from '../../components'
+import { Button, CartItem, Container } from '../../components'
 import { ChosenPizza } from '../../models/Pizza'
 import { CartState, RootState } from '../../models/Store'
 
@@ -45,6 +45,7 @@ const Cart: React.FC = (): JSX.Element => {
     },
     [dispatch],
   )
+
   const handleMinusPizzaItemClick = useCallback(
     (id: number) => {
       return () => {
@@ -56,7 +57,7 @@ const Cart: React.FC = (): JSX.Element => {
 
   return (
     <div className='content'>
-      <div className='container container--cart'>
+      <Container>
         {totalCount > 0 && totalPrice > 0 ? (
           <div className={styles.cart}>
             <div className={styles.top}>
@@ -192,7 +193,9 @@ const Cart: React.FC = (): JSX.Element => {
           </div>
         ) : (
           <div className={[styles.cart, styles.empty].join(' ')}>
-            <h2>Cart is Empty now 😕</h2>
+            <h2>
+              It Seems Like <strong>YOUR</strong> cart is empty 😕
+            </h2>
 
             <p>
               You probably haven't ordered a pizza yet.
@@ -204,12 +207,27 @@ const Cart: React.FC = (): JSX.Element => {
 
             <Link to='/'>
               <Button className={[styles.backButton, styles.blackButton].join(' ')}>
+                <svg
+                  width='7'
+                  height='12'
+                  viewBox='0 0 7 12'
+                  fill='none'
+                  xmlns='http://www.w3.org/2000/svg'>
+                  <path
+                    d='M6 11L1 5.94179L5.88479 1'
+                    stroke='#d3d3d3'
+                    stroke-width='1.5'
+                    stroke-linecap='round'
+                    stroke-linejoin='round'
+                  />
+                </svg>
+
                 <span>Get Back</span>
               </Button>
             </Link>
           </div>
         )}
-      </div>
+      </Container>
     </div>
   )
 }
