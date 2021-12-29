@@ -44,6 +44,8 @@ export enum pizzaDoughTypes {
 
 export type SubmissionFilling = {
   children: string | React.ReactNode
-  callback: () => void
   withDeny?: boolean
+  onSubmit: () => void
+  onClose?: (() => void) | null
+  successButton?: React.ReactNode | null
 }

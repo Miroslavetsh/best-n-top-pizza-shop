@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
 import { Dispatch } from 'redux'
 import axios from 'axios'
+import StripeCheckout, { Token } from 'react-stripe-checkout'
 
 import {
   clearCart,
@@ -22,9 +23,13 @@ const Cart: React.FC = (): JSX.Element => {
   const [isSubmissionOpened, setIsSubmissionOpened] = useState<boolean>(false)
   const [submissionFilling, setSubmissionFilling] = useState<SubmissionFilling>({
     children: '',
-    callback: () => {},
+    onSubmit: () => {},
     withDeny: true,
+    successButton: null,
+    onClose: null,
   })
+  const [isPurchaseLoading, setIsPurchaseLoading] = useState<boolean>(false)
+
   const { totalPrice, totalCount, items } = useSelector<RootState, CartState>(({ cart }) => cart)
   const dispatch = useDispatch<Dispatch>()
 
@@ -32,15 +37,18 @@ const Cart: React.FC = (): JSX.Element => {
     .map(Number)
     .map((key) => items[key].items[0])
 
+  // Cart handlers
   const handleClearCartClick = () => {
     return () => {
       setSubmissionFilling({
         children: 'Are You sure to clear all of your pizza!?',
-        callback: () => {
+        onSubmit: () => {
           dispatch(clearCart())
           setIsSubmissionOpened(false)
         },
         withDeny: true,
+        successButton: null,
+        onClose: null,
       })
       setIsSubmissionOpened(true)
     }
@@ -50,11 +58,13 @@ const Cart: React.FC = (): JSX.Element => {
     return () => {
       setSubmissionFilling({
         children: 'Are You sure to remove this pizza!?',
-        callback: () => {
+        onSubmit: () => {
           dispatch(removePizzaFromCart(id))
           setIsSubmissionOpened(false)
         },
         withDeny: true,
+        successButton: null,
+        onClose: null,
       })
       setIsSubmissionOpened(true)
     }
@@ -78,6 +88,7 @@ const Cart: React.FC = (): JSX.Element => {
     [dispatch],
   )
 
+  // Submission handlers
   const handleSubmissionClose = () => {
     setIsSubmissionOpened(false)
   }
@@ -86,46 +97,86 @@ const Cart: React.FC = (): JSX.Element => {
     setIsSubmissionOpened(false)
   }
 
+  // Purchase handlers
   const handleSubmitPurchasing = () => {
     setSubmissionFilling({
-      children: 'Are You sure to buy these pizza!?',
-      callback: () => {
-        approvePurchasingPizzas()
-        setIsSubmissionOpened(false)
-      },
+      children: (
+        <>
+          <h3>Are You sure to buy these pizza!?</h3>
+        </>
+      ),
+      onSubmit: () => {},
       withDeny: true,
+      successButton: (
+        <>
+          <StripeCheckout
+            token={approvePurchasingPizzas}
+            stripeKey={process.env.REACT_APP_STRIPE_PUBLISHABLE_KEY || ''}
+            amount={totalPrice * 100}>
+            <Button className={styles.confirm} onClick={submissionFilling.onSubmit}>
+              Pay
+            </Button>
+          </StripeCheckout>
+        </>
+      ),
+      onClose: null,
     })
     setIsSubmissionOpened(true)
   }
 
-  const approvePurchasingPizzas = () => {
+  const approvePurchasingPizzas = (token: Token) => {
     let url = process.env.NODE_ENV === 'development' ? 'http://localhost:3001' : ''
     url += '/purchase'
+
+    setIsPurchaseLoading(true)
 
     axios
       .post(url, {
         items,
-        totalCount,
         totalPrice,
+        token,
       })
-      .then((response) => {
+      .then((res) => {
         setSubmissionFilling({
           children: (
             <>
               <h3>Successfully Purchased Pizza </h3>
-              Your ID:
-              <strong onClick={() => navigator.clipboard.writeText(response.data)} title='Copy to clipboard'>
-                {response.data}
-              </strong>
-              👌
+              <br />
+              <div>
+                <div>Order ID:</div>
+                <strong
+                  onClick={() => navigator.clipboard.writeText(res.data)}
+                  title='Copy to clipboard'>
+                  {res.data}
+                </strong>
+                📋
+              </div>
             </>
           ),
-          callback: () => {
+          onSubmit: () => {
+            setIsSubmissionOpened(false)
+            dispatch(clearCart())
+          },
+          withDeny: false,
+          successButton: null,
+          onClose: () => {
             dispatch(clearCart())
             setIsSubmissionOpened(false)
           },
-          withDeny: false,
         })
+        setIsSubmissionOpened(true)
+        setIsPurchaseLoading(false)
+      })
+      .catch(() => {
+        setSubmissionFilling({
+          children: 'Sorry, Something gone wrong :(',
+          onSubmit: () => {
+            setIsSubmissionOpened(false)
+          },
+          withDeny: false,
+          successButton: null,
+        })
+        setIsPurchaseLoading(false)
         setIsSubmissionOpened(true)
       })
   }
@@ -228,13 +279,19 @@ const Cart: React.FC = (): JSX.Element => {
                   </Button>
                 </Link>
 
-                <Button onClick={handleSubmitPurchasing} className={styles.payButton}>
-                  <span>Buy NOW</span>
+                <Button
+                  onClick={isPurchaseLoading ? () => {} : handleSubmitPurchasing}
+                  className={styles.payButton}>
+                  <span>
+                    {isPurchaseLoading ? <img src='/img/loader.svg' alt='Loading...' /> : 'Buy NOW'}
+                  </span>
                 </Button>
               </div>
             </div>
 
-            <SubmissionPopup isOpened={isSubmissionOpened} onClose={handleSubmissionClose}>
+            <SubmissionPopup
+              isOpened={isSubmissionOpened}
+              onClose={submissionFilling.onClose || handleSubmissionClose}>
               <div className={styles.submission}>
                 <div className={styles.name}>{submissionFilling.children}</div>
 
@@ -245,9 +302,13 @@ const Cart: React.FC = (): JSX.Element => {
                     </Button>
                   )}
 
-                  <Button className={styles.confirm} onClick={submissionFilling.callback}>
-                    {submissionFilling.withDeny ? 'Yes' : 'Ok'}
-                  </Button>
+                  {submissionFilling.successButton !== null ? (
+                    submissionFilling.successButton
+                  ) : (
+                    <Button className={styles.confirm} onClick={submissionFilling.onSubmit}>
+                      {submissionFilling.withDeny ? 'Yes' : 'OK'}
+                    </Button>
+                  )}
                 </div>
               </div>
             </SubmissionPopup>

@@ -144,6 +144,7 @@
   }
 
   .payButton {
+    position: relative;
     padding: 12px 44px;
 
     background: $accentColor;
@@ -151,6 +152,15 @@
     font-size: 12px;
     font-weight: 800;
     text-transform: uppercase;
+
+    img {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 40px;
+
+      transform: translate(-50%, -50%);
+    }
 
     &:hover {
       background: darken($accentColor, 15%);
