@@ -118,6 +118,12 @@
       span {
         color: #f6f6f6;
       }
+
+      svg {
+        path {
+          fill: none;
+        }
+      }
     }
 
     span {
@@ -138,6 +144,7 @@
   }
 
   .payButton {
+    position: relative;
     padding: 12px 44px;
 
     background: $accentColor;
@@ -145,6 +152,15 @@
     font-size: 12px;
     font-weight: 800;
     text-transform: uppercase;
+
+    img {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 40px;
+
+      transform: translate(-50%, -50%);
+    }
 
     &:hover {
       background: darken($accentColor, 15%);
@@ -214,6 +230,19 @@
     font-weight: 300;
 
     margin-bottom: 12px;
+    strong {
+      cursor: pointer;
+
+      text-decoration: underline;
+
+      &:hover {
+        color: #777;
+      }
+
+      &:active {
+        color: #333;
+      }
+    }
   }
 
   .buttons {
@@ -248,10 +277,10 @@
       border: 1px solid #d3d3d3;
       color: #d3d3d3;
       background: transparent;
-      
+
       &:hover {
         background: #111;
-      
+
         color: $secondaryTextColor;
       }
     }

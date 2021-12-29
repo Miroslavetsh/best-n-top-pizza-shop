@@ -1,3 +1,5 @@
+import React from 'react'
+
 export enum availableActions {
   SET_SORT_BY = 'SET_SORT_BY',
   SET_CATEGORY = 'SET_CATEGORY',
@@ -41,6 +43,9 @@ export enum pizzaDoughTypes {
 }
 
 export type SubmissionFilling = {
-  text: string
-  callback: () => void
+  children: string | React.ReactNode
+  withDeny?: boolean
+  onSubmit: () => void
+  onClose?: (() => void) | null
+  successButton?: React.ReactNode | null
 }
