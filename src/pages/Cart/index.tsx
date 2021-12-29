@@ -2,6 +2,7 @@ import { useCallback, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
 import { Dispatch } from 'redux'
+import axios from 'axios'
 
 import {
   clearCart,
@@ -20,8 +21,9 @@ import styles from './Styles.module.scss'
 const Cart: React.FC = (): JSX.Element => {
   const [isSubmissionOpened, setIsSubmissionOpened] = useState<boolean>(false)
   const [submissionFilling, setSubmissionFilling] = useState<SubmissionFilling>({
-    text: '',
+    children: '',
     callback: () => {},
+    withDeny: true,
   })
   const { totalPrice, totalCount, items } = useSelector<RootState, CartState>(({ cart }) => cart)
   const dispatch = useDispatch<Dispatch>()
@@ -33,11 +35,12 @@ const Cart: React.FC = (): JSX.Element => {
   const handleClearCartClick = () => {
     return () => {
       setSubmissionFilling({
-        text: 'Are You sure to clear all of your pizza!?',
+        children: 'Are You sure to clear all of your pizza!?',
         callback: () => {
           dispatch(clearCart())
           setIsSubmissionOpened(false)
         },
+        withDeny: true,
       })
       setIsSubmissionOpened(true)
     }
@@ -46,11 +49,12 @@ const Cart: React.FC = (): JSX.Element => {
   const handleRemovePizzaClick = (id: number) => {
     return () => {
       setSubmissionFilling({
-        text: 'Are You sure to remove this pizza!?',
+        children: 'Are You sure to remove this pizza!?',
         callback: () => {
           dispatch(removePizzaFromCart(id))
           setIsSubmissionOpened(false)
         },
+        withDeny: true,
       })
       setIsSubmissionOpened(true)
     }
@@ -80,6 +84,50 @@ const Cart: React.FC = (): JSX.Element => {
 
   const handleSubmissionDecline = () => {
     setIsSubmissionOpened(false)
+  }
+
+  const handleSubmitPurchasing = () => {
+    setSubmissionFilling({
+      children: 'Are You sure to buy these pizza!?',
+      callback: () => {
+        approvePurchasingPizzas()
+        setIsSubmissionOpened(false)
+      },
+      withDeny: true,
+    })
+    setIsSubmissionOpened(true)
+  }
+
+  const approvePurchasingPizzas = () => {
+    let url = process.env.NODE_ENV === 'development' ? 'http://localhost:3001' : ''
+    url += '/purchase'
+
+    axios
+      .post(url, {
+        items,
+        totalCount,
+        totalPrice,
+      })
+      .then((response) => {
+        setSubmissionFilling({
+          children: (
+            <>
+              <h3>Successfully Purchased Pizza </h3>
+              Your ID:
+              <strong onClick={() => navigator.clipboard.writeText(response.data)} title='Copy to clipboard'>
+                {response.data}
+              </strong>
+              👌
+            </>
+          ),
+          callback: () => {
+            dispatch(clearCart())
+            setIsSubmissionOpened(false)
+          },
+          withDeny: false,
+        })
+        setIsSubmissionOpened(true)
+      })
   }
 
   return (
@@ -180,7 +228,7 @@ const Cart: React.FC = (): JSX.Element => {
                   </Button>
                 </Link>
 
-                <Button className={styles.payButton}>
+                <Button onClick={handleSubmitPurchasing} className={styles.payButton}>
                   <span>Buy NOW</span>
                 </Button>
               </div>
@@ -188,15 +236,17 @@ const Cart: React.FC = (): JSX.Element => {
 
             <SubmissionPopup isOpened={isSubmissionOpened} onClose={handleSubmissionClose}>
               <div className={styles.submission}>
-                <div className={styles.name}>{submissionFilling.text}</div>
+                <div className={styles.name}>{submissionFilling.children}</div>
 
                 <div className={styles.buttons}>
-                  <Button className={styles.decline} onClick={handleSubmissionDecline}>
-                    No
-                  </Button>
+                  {submissionFilling.withDeny && (
+                    <Button className={styles.decline} onClick={handleSubmissionDecline}>
+                      No
+                    </Button>
+                  )}
 
                   <Button className={styles.confirm} onClick={submissionFilling.callback}>
-                    Yes
+                    {submissionFilling.withDeny ? 'Yes' : 'Ok'}
                   </Button>
                 </div>
               </div>

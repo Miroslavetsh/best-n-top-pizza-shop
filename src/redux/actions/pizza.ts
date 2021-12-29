@@ -5,7 +5,8 @@ import Pizza from '../../models/Pizza'
 import { availableActions, CATEGORIES, SortParameter } from '../../utils/constants'
 
 export const fetchPizza = (category: string, sortBy: SortParameter) => (dispatch: Dispatch) => {
-  const url = process.env.NODE_ENV === 'development' ? 'http://localhost:3001/pizzas' : '/pizzas'
+  let url = process.env.NODE_ENV === 'development' ? 'http://localhost:3001' : ''
+  url += '/products/pizzas'
 
   axios
     .get(url, {

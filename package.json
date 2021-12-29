@@ -109,7 +109,9 @@
     "react-content-loader": "^6.1.0",
     "react-router-dom": "^5.2.0",
     "react-testing-library": "^8.0.1",
-    "typescript": "^4.5.2"
+    "stripe": "^8.195.0",
+    "typescript": "^4.5.2",
+    "uuid": "^8.3.2"
   },
   "jest": {
     "roots": [
