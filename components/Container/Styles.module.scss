@@ -1,0 +1,9 @@
+.container {
+  width: 100%;
+  max-width: 1410px;
+  margin: 0 auto;
+  padding: 0 8px;
+  &.small {
+    max-width: 990px;
+  }
+}
