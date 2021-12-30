@@ -1,9 +1,9 @@
 import type { NextApiRequest, NextApiResponse } from 'next'
-import uuid from 'uuid'
 
 import Pizza from '../../models/Pizza'
 
 const stripe = require('stripe')(process.env.NEXT_PUBLIC_STRIPE_SECRET_KEY)
+const uuid = require('uuid')
 
 type Items = {
   element: {
