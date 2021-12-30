@@ -1,0 +1,288 @@
+@import '../../styles/variables.scss';
+
+.cart {
+  margin: 0 auto;
+  margin-top: 32px;
+  max-width: 990px;
+  width: 100%;
+  padding: 20px;
+
+  border-radius: 4px;
+  background: $secondaryTextColor;
+
+  .top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .title {
+    display: flex;
+    align-items: center;
+
+    font-size: 12px;
+    font-weight: 300;
+
+    svg {
+      position: relative;
+      top: -2px;
+      width: 30px;
+      height: 30px;
+      margin-right: 10px;
+
+      path {
+        stroke: #232323;
+        stroke-width: 1.9;
+      }
+    }
+  }
+
+  .clear {
+    display: flex;
+    align-items: center;
+
+    cursor: pointer;
+    user-select: none;
+
+    span {
+      display: inline-block;
+      margin-left: 4px;
+
+      color: #b6b6b6;
+      font-size: 12px;
+    }
+
+    span,
+    svg,
+    path {
+      transition: all 0.15s ease-in-out;
+    }
+
+    &:hover {
+      svg path {
+        stroke: #373737;
+      }
+
+      span {
+        color: #373737;
+      }
+    }
+  }
+
+  .bottom {
+    margin-top: 32px;
+
+    .details {
+      display: flex;
+      justify-content: space-between;
+
+      @media screen and (max-width: 420px) {
+        flex-direction: column;
+      }
+
+      span {
+        font-size: 12px;
+        font-weight: 300;
+
+        &:last-of-type strong {
+          color: $accentColor;
+        }
+      }
+    }
+  }
+
+  .buttons {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 12px;
+
+    @media screen and (max-width: 420px) {
+      flex-direction: column-reverse;
+      gap: 12px;
+    }
+  }
+
+  .blackButton {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding-top: 12px;
+    padding-bottom: 12px;
+
+    border-color: #ddd;
+
+    &:hover {
+      background-color: #111;
+      border-color: #111;
+
+      span {
+        color: #f6f6f6;
+      }
+
+      svg {
+        path {
+          fill: none;
+        }
+      }
+    }
+
+    span {
+      color: #c3c3c3;
+      font-weight: 500;
+      font-size: 12px;
+    }
+
+    svg {
+      max-width: 6px;
+      margin-right: 12px;
+
+      path {
+        fill: transparent;
+        stroke-width: 2;
+      }
+    }
+  }
+
+  .payButton {
+    position: relative;
+    padding: 12px 44px;
+
+    background: $accentColor;
+
+    font-size: 12px;
+    font-weight: 800;
+    text-transform: uppercase;
+
+    img {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 40px;
+
+      transform: translate(-50%, -50%);
+    }
+
+    &:hover {
+      background: darken($accentColor, 15%);
+    }
+  }
+
+  &.empty {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    padding: 40px 0;
+
+    text-align: center;
+
+    h2 {
+      margin-bottom: 10px;
+
+      font-size: 24px;
+    }
+
+    p {
+      font-size: 14px;
+      line-height: 145.4%;
+      letter-spacing: 0.01em;
+      color: #777777;
+    }
+
+    i {
+      position: relative;
+      top: 2px;
+    }
+
+    img {
+      display: block;
+      width: 300px;
+      margin: 45px auto 60px;
+    }
+
+    .backButton {
+      padding: 12px 0;
+      min-width: 230px;
+      margin: 0 auto;
+      font-weight: 600;
+      font-size: 12px;
+      text-transform: uppercase;
+
+      svg {
+        max-width: 5px;
+      }
+    }
+  }
+}
+
+.submission {
+  width: 280px;
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  background: #fff;
+  border-radius: 4px;
+
+  .name {
+    font-size: 14px;
+    font-weight: 300;
+
+    margin-bottom: 12px;
+    strong {
+      cursor: pointer;
+
+      text-decoration: underline;
+
+      &:hover {
+        color: #777;
+      }
+
+      &:active {
+        color: #333;
+      }
+    }
+  }
+
+  .buttons {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    .confirm,
+    .decline {
+      width: 100px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding-top: 4px;
+      padding-bottom: 4px;
+
+      font-size: 12px;
+      font-weight: 700;
+      color: $secondaryTextColor;
+    }
+
+    .confirm {
+      background: $accentColor;
+
+      &:hover {
+        background: darken($accentColor, 15%);
+      }
+    }
+
+    .decline {
+      border: 1px solid #d3d3d3;
+      color: #d3d3d3;
+      background: transparent;
+
+      &:hover {
+        background: #111;
+
+        color: $secondaryTextColor;
+      }
+    }
+  }
+}
