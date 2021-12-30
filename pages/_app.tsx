@@ -1,5 +1,6 @@
 import type { AppProps } from 'next/app'
 import { Provider } from 'react-redux'
+import { createWrapper, MakeStore } from 'next-redux-wrapper'
 import Layout from '../components/layout'
 
 import store from '../redux/store'
@@ -15,5 +16,7 @@ function App({ Component, pageProps }: AppProps) {
     </Provider>
   )
 }
+const makeStore = () => store
+const wrapper = createWrapper(makeStore, { debug: true })
 
-export default App
+export default wrapper.withRedux(App)

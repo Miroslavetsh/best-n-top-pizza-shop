@@ -1,4 +1,5 @@
 import { NextPage } from 'next'
+import Head from 'next/head'
 import { useCallback, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { Dispatch } from 'redux'
@@ -185,7 +186,14 @@ const Cart: NextPage = (): JSX.Element => {
   }
 
   return (
-    <div className='content'>
+    <>
+      <Head>
+        <link rel='manifest' href='/manifest.json' />
+        <link rel='icon' href='/favicon.png' />
+
+        <title>The Best Cart</title>
+      </Head>
+
       <Container>
         {totalCount > 0 && totalPrice > 0 ? (
           <div className={styles.cart}>
@@ -363,7 +371,7 @@ const Cart: NextPage = (): JSX.Element => {
           </div>
         )}
       </Container>
-    </div>
+    </>
   )
 }
 

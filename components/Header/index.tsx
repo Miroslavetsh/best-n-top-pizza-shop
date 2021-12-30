@@ -1,4 +1,4 @@
-// import { Link } from 'react-router-dom'
+import Link from 'next/link'
 import { useSelector } from 'react-redux'
 
 import { Container, Button } from '..'
@@ -17,7 +17,7 @@ const Header: React.FC = (): JSX.Element => {
     <header className={styles.header}>
       <Container className={styles.container}>
         <div className={styles.left}>
-          <a href='/'>
+          <Link href='/'>
             <div className={styles.logo}>
               <img width='38' src='/img/pizza-logo.svg' alt='Pizza logo' />
 
@@ -27,7 +27,7 @@ const Header: React.FC = (): JSX.Element => {
                 <h1>Pizza Shop</h1>
               </div>
             </div>
-          </a>
+          </Link>
 
           <div className={styles.phrase}>
             <h2>
@@ -37,7 +37,7 @@ const Header: React.FC = (): JSX.Element => {
         </div>
 
         <div>
-          <a href={totalCount > 0 && totalPrice > 0 ? '/cart' : '/'}>
+          <Link href={totalCount > 0 && totalPrice > 0 ? '/cart' : '/'}>
             <Button className={styles.buttonCart}>
               {totalPrice && totalCount ? (
                 <>
@@ -82,7 +82,7 @@ const Header: React.FC = (): JSX.Element => {
                 </>
               )}
             </Button>
-          </a>
+          </Link>
         </div>
       </Container>
     </header>

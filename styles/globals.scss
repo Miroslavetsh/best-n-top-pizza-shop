@@ -1,7 +1,7 @@
-@import 'assets/styles/reset.scss';
-@import 'assets/styles/variables.scss';
-@import url(https://fonts.googleapis.com/css?family=Mulish:200,300,regular,500,600,700,800,900,200italic,300italic,italic,500italic,600italic,700italic,800italic,900italic);
-@import url(https://fonts.googleapis.com/css?family=Oleo+Script:regular,700);
+@import 'reset.scss';
+@import 'variables.scss';
+@import url('https://fonts.googleapis.com/css?family=Mulish:200,300,regular,500,600,700,800,900,200italic,300italic,italic,500italic,600italic,700italic,800italic,900italic');
+@import url('https://fonts.googleapis.com/css?family=Oleo+Script:regular,700');
 
 body {
   &::-webkit-scrollbar {
