@@ -14,6 +14,7 @@
   "devDependencies": {
     "@types/node": "17.0.5",
     "@types/react": "17.0.38",
+    "@types/uuid": "^8.3.3",
     "axios": "^0.24.0",
     "eslint": "8.5.0",
     "eslint-config-next": "12.0.7",
@@ -24,6 +25,8 @@
     "react-redux": "^7.2.6",
     "react-stripe-checkout": "^2.6.3",
     "redux-thunk": "^2.4.1",
-    "typescript": "4.5.4"
+    "stripe": "^8.195.0",
+    "typescript": "4.5.4",
+    "uuid": "^8.3.2"
   }
 }

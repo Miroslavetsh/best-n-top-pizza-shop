@@ -136,7 +136,7 @@ const Cart: NextPage = (): JSX.Element => {
     setIsPurchaseLoading(true)
 
     axios
-      .post('/purchase', {
+      .post('/api/purchase', {
         items,
         totalPrice,
         token,
