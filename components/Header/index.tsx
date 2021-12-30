@@ -20,7 +20,7 @@ const Header: React.FC = (): JSX.Element => {
         <div className={styles.left}>
           <Link href='/'>
             <div className={styles.logo}>
-              <Image width='38' src='/img/pizza-logo.svg' alt='Pizza logo' />
+              <Image width='38' height='38' src='/img/pizza-logo.svg' alt='Pizza logo' />
 
               <div className={styles.typographic}>
                 <p>best & top</p>

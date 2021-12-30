@@ -64,7 +64,7 @@ const PizzaBlock: React.FC<PizzaBlockPropTypes> = (props): JSX.Element => {
   return (
     <div className={styles.pizzaBlock}>
       <div className={styles.image}>
-        <Image src={imageUrl} alt='Pizza' onLoad={toggleImageVisibility} />
+        <Image src={imageUrl} width={200} height={200} alt='Pizza' onLoad={toggleImageVisibility} />
         {isImageLoaded ? null : <ImagePlaceholder />}
 
         {hit && <span className={styles.hit}>Hit</span>}

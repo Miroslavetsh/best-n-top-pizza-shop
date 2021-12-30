@@ -10,6 +10,7 @@ interface CartItemPropTypes {
   size: number
   price: number
   count: number
+  imageUrl: string
   onRemovePizzaClick: () => void
   onPlusPizzaClick: () => void
   onMinusPizzaClick: () => void
@@ -22,6 +23,7 @@ const CartItem: React.FC<CartItemPropTypes> = (props): JSX.Element => {
     size,
     price,
     count,
+    imageUrl,
     onRemovePizzaClick,
     onPlusPizzaClick,
     onMinusPizzaClick,
@@ -32,8 +34,10 @@ const CartItem: React.FC<CartItemPropTypes> = (props): JSX.Element => {
       <div className={styles.left}>
         <div className={styles.img}>
           <Image
-            src='https://dodopizza-a.akamaihd.net/static/Img/Products/Pizza/ru-RU/b750f576-4a83-48e6-a283-5a8efb68c35d.jpg'
+            src={imageUrl}
             alt='Pizza'
+            width={63}
+            height={63}
           />
         </div>
 

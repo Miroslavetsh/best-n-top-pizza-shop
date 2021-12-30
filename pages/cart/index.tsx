@@ -244,7 +244,7 @@ const Cart: NextPage = (): JSX.Element => {
 
             <div className={styles.items}>
               {addedPizzas.map(
-                ({ name, type, size, price, id }: ChosenPizza) => (
+                ({ name, type, size, price, id, imageUrl }: ChosenPizza) => (
                   <CartItem
                     key={id}
                     name={name}
@@ -252,6 +252,7 @@ const Cart: NextPage = (): JSX.Element => {
                     size={size}
                     price={price}
                     count={items[id].items.length}
+                    imageUrl={imageUrl}
                     onRemovePizzaClick={handleRemovePizzaClick(id)}
                     onPlusPizzaClick={handlePlusPizzaItemClick(id)}
                     onMinusPizzaClick={handleMinusPizzaItemClick(id)}
@@ -298,7 +299,12 @@ const Cart: NextPage = (): JSX.Element => {
                   className={styles.payButton}>
                   <span>
                     {isPurchaseLoading ? (
-                      <Image src='/img/loader.svg' alt='Loading...' />
+                      <img
+                        src='/img/loader.svg'
+                        width={40}
+                        height={40}
+                        alt='Loading...'
+                      />
                     ) : (
                       'Buy NOW'
                     )}
@@ -347,7 +353,12 @@ const Cart: NextPage = (): JSX.Element => {
               To order a pizza, go to the home page.
             </p>
 
-            <Image src='/img/empty-cart.png' alt='Empty cart' />
+            <Image
+              src='/img/empty-cart.png'
+              width={360}
+              height={320}
+              alt='Empty cart'
+            />
 
             <Button
               href='/'
