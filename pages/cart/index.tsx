@@ -1,5 +1,6 @@
 import { NextPage } from 'next'
 import Head from 'next/head'
+import Image from 'next/image'
 import { useCallback, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { Dispatch } from 'redux'
@@ -297,7 +298,7 @@ const Cart: NextPage = (): JSX.Element => {
                   className={styles.payButton}>
                   <span>
                     {isPurchaseLoading ? (
-                      <img src='/img/loader.svg' alt='Loading...' />
+                      <Image src='/img/loader.svg' alt='Loading...' />
                     ) : (
                       'Buy NOW'
                     )}
@@ -346,7 +347,7 @@ const Cart: NextPage = (): JSX.Element => {
               To order a pizza, go to the home page.
             </p>
 
-            <img src='/img/empty-cart.png' alt='Empty cart' />
+            <Image src='/img/empty-cart.png' alt='Empty cart' />
 
             <Button
               href='/'

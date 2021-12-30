@@ -1,3 +1,4 @@
+import Image from 'next/image'
 import React, { useState } from 'react'
 
 import { Button } from '..'
@@ -63,7 +64,7 @@ const PizzaBlock: React.FC<PizzaBlockPropTypes> = (props): JSX.Element => {
   return (
     <div className={styles.pizzaBlock}>
       <div className={styles.image}>
-        <img src={imageUrl} alt='Pizza' onLoad={toggleImageVisibility} />
+        <Image src={imageUrl} alt='Pizza' onLoad={toggleImageVisibility} />
         {isImageLoaded ? null : <ImagePlaceholder />}
 
         {hit && <span className={styles.hit}>Hit</span>}

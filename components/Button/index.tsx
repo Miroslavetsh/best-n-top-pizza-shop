@@ -1,3 +1,5 @@
+import Link from 'next/link'
+
 import styles from './Styles.module.scss'
 
 interface ButtonPropTypes {
@@ -11,7 +13,8 @@ interface ButtonPropTypes {
 }
 
 const Button: React.FC<ButtonPropTypes> = (props): JSX.Element => {
-  const { href, onClick, children, outline, className, disabled, circle } = props
+  const { href, onClick, children, outline, className, disabled, circle } =
+    props
 
   const classNames = [styles.button, className]
   outline && classNames.push(styles.outline)
@@ -27,9 +30,11 @@ const Button: React.FC<ButtonPropTypes> = (props): JSX.Element => {
   }
 
   return (
-    <a href={href} onClick={onClick} className={classNames.join(' ')}>
-      {children}
-    </a>
+    <Link href={href || '/'}>
+      <div onClick={onClick} className={classNames.join(' ')}>
+        {children}
+      </div>
+    </Link>
   )
 }
 

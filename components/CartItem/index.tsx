@@ -1,3 +1,5 @@
+import Image from 'next/image'
+
 import { Button } from '..'
 
 import styles from './Styles.module.scss'
@@ -29,7 +31,7 @@ const CartItem: React.FC<CartItemPropTypes> = (props): JSX.Element => {
     <div className={styles.item}>
       <div className={styles.left}>
         <div className={styles.img}>
-          <img
+          <Image
             src='https://dodopizza-a.akamaihd.net/static/Img/Products/Pizza/ru-RU/b750f576-4a83-48e6-a283-5a8efb68c35d.jpg'
             alt='Pizza'
           />
@@ -70,7 +72,11 @@ const CartItem: React.FC<CartItemPropTypes> = (props): JSX.Element => {
 
           <b>{count}</b>
 
-          <Button onClick={onPlusPizzaClick} className={styles.countPlus} outline circle>
+          <Button
+            onClick={onPlusPizzaClick}
+            className={styles.countPlus}
+            outline
+            circle>
             <svg
               width='10'
               height='10'
@@ -94,7 +100,11 @@ const CartItem: React.FC<CartItemPropTypes> = (props): JSX.Element => {
         </div>
 
         <div className={styles.remove}>
-          <Button onClick={onRemovePizzaClick} className={styles.button} circle outline>
+          <Button
+            onClick={onRemovePizzaClick}
+            className={styles.button}
+            circle
+            outline>
             <svg
               width='10'
               height='10'

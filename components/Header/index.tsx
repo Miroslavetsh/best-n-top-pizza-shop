@@ -1,3 +1,4 @@
+import Image from 'next/image'
 import Link from 'next/link'
 import { useSelector } from 'react-redux'
 
@@ -19,7 +20,7 @@ const Header: React.FC = (): JSX.Element => {
         <div className={styles.left}>
           <Link href='/'>
             <div className={styles.logo}>
-              <img width='38' src='/img/pizza-logo.svg' alt='Pizza logo' />
+              <Image width='38' src='/img/pizza-logo.svg' alt='Pizza logo' />
 
               <div className={styles.typographic}>
                 <p>best & top</p>
