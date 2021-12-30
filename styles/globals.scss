@@ -25,7 +25,7 @@ body {
   padding-bottom: 72px;
   overflow: hidden;
 
-  background: url('/assets/img/bg.jpg') top no-repeat fixed;
+  background: url('/img/bg.jpg') top no-repeat fixed;
   background-size: cover;
 
   color: $mainTextColor;
@@ -48,18 +48,6 @@ body {
   header {
     position: relative;
     z-index: 2;
-  }
-}
-
-.container {
-  width: 90%;
-  margin: 0 auto;
-  &--cart {
-    max-width: 820px;
-    margin: 30px auto;
-    .content__title {
-      margin: 0;
-    }
   }
 }
 
