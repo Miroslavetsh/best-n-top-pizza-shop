@@ -6,10 +6,10 @@ type LayoutPropTypes = {
 
 const Layout: React.FC<LayoutPropTypes> = ({ children }) => {
   return (
-    <>
+    <div className='page'>
       <Header />
       {children}
-    </>
+    </div>
   )
 }
 

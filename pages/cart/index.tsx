@@ -195,194 +195,198 @@ const Cart: NextPage = (): JSX.Element => {
         <title>The Best Cart</title>
       </Head>
 
-      <Container>
-        {totalCount > 0 && totalPrice > 0 ? (
-          <div className={styles.cart}>
-            <div className={styles.top}>
-              <h2 className={styles.title}>Chosen Pizza:</h2>
+      <div className='content'>
+        <Container>
+          {totalCount > 0 && totalPrice > 0 ? (
+            <div className={styles.cart}>
+              <div className={styles.top}>
+                <h2 className={styles.title}>Chosen Pizza:</h2>
 
-              <div className={styles.clear}>
-                <svg
-                  width='12'
-                  height='12'
-                  viewBox='0 0 20 20'
-                  fill='none'
-                  xmlns='http://www.w3.org/2000/svg'>
-                  <path
-                    d='M2.5 5H4.16667H17.5'
-                    stroke='#B6B6B6'
-                    strokeWidth='1.2'
-                    strokeLinecap='round'
-                    strokeLinejoin='round'
-                  />
-                  <path
-                    d='M6.66663 5.00001V3.33334C6.66663 2.89131 6.84222 2.46739 7.15478 2.15483C7.46734 1.84227 7.89127 1.66667 8.33329 1.66667H11.6666C12.1087 1.66667 12.5326 1.84227 12.8451 2.15483C13.1577 2.46739 13.3333 2.89131 13.3333 3.33334V5.00001M15.8333 5.00001V16.6667C15.8333 17.1087 15.6577 17.5326 15.3451 17.8452C15.0326 18.1577 14.6087 18.3333 14.1666 18.3333H5.83329C5.39127 18.3333 4.96734 18.1577 4.65478 17.8452C4.34222 17.5326 4.16663 17.1087 4.16663 16.6667V5.00001H15.8333Z'
-                    stroke='#B6B6B6'
-                    strokeWidth='1.2'
-                    strokeLinecap='round'
-                    strokeLinejoin='round'
-                  />
-                  <path
-                    d='M8.33337 9.16667V14.1667'
-                    stroke='#B6B6B6'
-                    strokeWidth='1.2'
-                    strokeLinecap='round'
-                    strokeLinejoin='round'
-                  />
-                  <path
-                    d='M11.6666 9.16667V14.1667'
-                    stroke='#B6B6B6'
-                    strokeWidth='1.2'
-                    strokeLinecap='round'
-                    strokeLinejoin='round'
-                  />
-                </svg>
-
-                <span onClick={handleClearCartClick()}>Clear the cart</span>
-              </div>
-            </div>
-
-            <div className={styles.items}>
-              {addedPizzas.map(
-                ({ name, type, size, price, id, imageUrl }: ChosenPizza) => (
-                  <CartItem
-                    key={id}
-                    name={name}
-                    type={type}
-                    size={size}
-                    price={price}
-                    count={items[id].items.length}
-                    imageUrl={imageUrl}
-                    onRemovePizzaClick={handleRemovePizzaClick(id)}
-                    onPlusPizzaClick={handlePlusPizzaItemClick(id)}
-                    onMinusPizzaClick={handleMinusPizzaItemClick(id)}
-                  />
-                )
-              )}
-            </div>
-
-            <div className={styles.bottom}>
-              <div className={styles.details}>
-                <span>
-                  Total pizzas count: <strong>{totalCount} шт.</strong>
-                </span>
-
-                <span>
-                  Total price: <strong>&#36;{totalPrice}</strong>
-                </span>
-              </div>
-
-              <div className={styles.buttons}>
-                <Button href='/' className={styles.blackButton} outline>
+                <div className={styles.clear}>
                   <svg
-                    width='8'
-                    height='14'
-                    viewBox='0 0 8 14'
+                    width='12'
+                    height='12'
+                    viewBox='0 0 20 20'
                     fill='none'
                     xmlns='http://www.w3.org/2000/svg'>
                     <path
-                      d='M7 13L1 6.93015L6.86175 1'
-                      stroke='#d3d3d3'
-                      strokeWidth='1.5'
+                      d='M2.5 5H4.16667H17.5'
+                      stroke='#B6B6B6'
+                      strokeWidth='1.2'
+                      strokeLinecap='round'
+                      strokeLinejoin='round'
+                    />
+                    <path
+                      d='M6.66663 5.00001V3.33334C6.66663 2.89131 6.84222 2.46739 7.15478 2.15483C7.46734 1.84227 7.89127 1.66667 8.33329 1.66667H11.6666C12.1087 1.66667 12.5326 1.84227 12.8451 2.15483C13.1577 2.46739 13.3333 2.89131 13.3333 3.33334V5.00001M15.8333 5.00001V16.6667C15.8333 17.1087 15.6577 17.5326 15.3451 17.8452C15.0326 18.1577 14.6087 18.3333 14.1666 18.3333H5.83329C5.39127 18.3333 4.96734 18.1577 4.65478 17.8452C4.34222 17.5326 4.16663 17.1087 4.16663 16.6667V5.00001H15.8333Z'
+                      stroke='#B6B6B6'
+                      strokeWidth='1.2'
+                      strokeLinecap='round'
+                      strokeLinejoin='round'
+                    />
+                    <path
+                      d='M8.33337 9.16667V14.1667'
+                      stroke='#B6B6B6'
+                      strokeWidth='1.2'
+                      strokeLinecap='round'
+                      strokeLinejoin='round'
+                    />
+                    <path
+                      d='M11.6666 9.16667V14.1667'
+                      stroke='#B6B6B6'
+                      strokeWidth='1.2'
                       strokeLinecap='round'
                       strokeLinejoin='round'
                     />
                   </svg>
 
-                  <span>Continue Shopping</span>
-                </Button>
-
-                <Button
-                  onClick={
-                    isPurchaseLoading ? () => {} : handleSubmitPurchasing
-                  }
-                  className={styles.payButton}>
-                  <span>
-                    {isPurchaseLoading ? (
-                      <img
-                        src='/img/loader.svg'
-                        width={40}
-                        height={40}
-                        alt='Loading...'
-                      />
-                    ) : (
-                      'Buy NOW'
-                    )}
-                  </span>
-                </Button>
-              </div>
-            </div>
-
-            <SubmissionPopup
-              isOpened={isSubmissionOpened}
-              onClose={submissionFilling.onClose || handleSubmissionClose}>
-              <div className={styles.submission}>
-                <div className={styles.name}>{submissionFilling.children}</div>
-
-                <div className={styles.buttons}>
-                  {submissionFilling.withDeny && (
-                    <Button
-                      className={styles.decline}
-                      onClick={handleSubmissionDecline}>
-                      No
-                    </Button>
-                  )}
-
-                  {submissionFilling.successButton !== null ? (
-                    submissionFilling.successButton
-                  ) : (
-                    <Button
-                      className={styles.confirm}
-                      onClick={submissionFilling.onSubmit}>
-                      {submissionFilling.withDeny ? 'Yes' : 'OK'}
-                    </Button>
-                  )}
+                  <span onClick={handleClearCartClick()}>Clear the cart</span>
                 </div>
               </div>
-            </SubmissionPopup>
-          </div>
-        ) : (
-          <div className={[styles.cart, styles.empty].join(' ')}>
-            <h2>
-              It Seems Like <strong>YOUR</strong> cart is empty 😕
-            </h2>
 
-            <p>
-              You probably haven't ordered a pizza yet.
-              <br />
-              To order a pizza, go to the home page.
-            </p>
+              <div className={styles.items}>
+                {addedPizzas.map(
+                  ({ name, type, size, price, id, imageUrl }: ChosenPizza) => (
+                    <CartItem
+                      key={id}
+                      name={name}
+                      type={type}
+                      size={size}
+                      price={price}
+                      count={items[id].items.length}
+                      imageUrl={imageUrl}
+                      onRemovePizzaClick={handleRemovePizzaClick(id)}
+                      onPlusPizzaClick={handlePlusPizzaItemClick(id)}
+                      onMinusPizzaClick={handleMinusPizzaItemClick(id)}
+                    />
+                  )
+                )}
+              </div>
 
-            <Image
-              src='/img/empty-cart.png'
-              width={360}
-              height={320}
-              alt='Empty cart'
-            />
+              <div className={styles.bottom}>
+                <div className={styles.details}>
+                  <span>
+                    Total pizzas count: <strong>{totalCount} шт.</strong>
+                  </span>
 
-            <Button
-              href='/'
-              className={[styles.backButton, styles.blackButton].join(' ')}>
-              <svg
-                width='7'
-                height='12'
-                viewBox='0 0 7 12'
-                fill='none'
-                xmlns='http://www.w3.org/2000/svg'>
-                <path
-                  d='M6 11L1 5.94179L5.88479 1'
-                  stroke='#d3d3d3'
-                  strokeWidth='1.5'
-                  strokeLinecap='round'
-                  strokeLinejoin='round'
-                />
-              </svg>
+                  <span>
+                    Total price: <strong>&#36;{totalPrice}</strong>
+                  </span>
+                </div>
 
-              <span>Get Back</span>
-            </Button>
-          </div>
-        )}
-      </Container>
+                <div className={styles.buttons}>
+                  <Button href='/' className={styles.blackButton} outline>
+                    <svg
+                      width='8'
+                      height='14'
+                      viewBox='0 0 8 14'
+                      fill='none'
+                      xmlns='http://www.w3.org/2000/svg'>
+                      <path
+                        d='M7 13L1 6.93015L6.86175 1'
+                        stroke='#d3d3d3'
+                        strokeWidth='1.5'
+                        strokeLinecap='round'
+                        strokeLinejoin='round'
+                      />
+                    </svg>
+
+                    <span>Continue Shopping</span>
+                  </Button>
+
+                  <Button
+                    onClick={
+                      isPurchaseLoading ? () => {} : handleSubmitPurchasing
+                    }
+                    className={styles.payButton}>
+                    <span>
+                      {isPurchaseLoading ? (
+                        <img
+                          src='/img/loader.svg'
+                          width={40}
+                          height={40}
+                          alt='Loading...'
+                        />
+                      ) : (
+                        'Buy NOW'
+                      )}
+                    </span>
+                  </Button>
+                </div>
+              </div>
+
+              <SubmissionPopup
+                isOpened={isSubmissionOpened}
+                onClose={submissionFilling.onClose || handleSubmissionClose}>
+                <div className={styles.submission}>
+                  <div className={styles.name}>
+                    {submissionFilling.children}
+                  </div>
+
+                  <div className={styles.buttons}>
+                    {submissionFilling.withDeny && (
+                      <Button
+                        className={styles.decline}
+                        onClick={handleSubmissionDecline}>
+                        No
+                      </Button>
+                    )}
+
+                    {submissionFilling.successButton !== null ? (
+                      submissionFilling.successButton
+                    ) : (
+                      <Button
+                        className={styles.confirm}
+                        onClick={submissionFilling.onSubmit}>
+                        {submissionFilling.withDeny ? 'Yes' : 'OK'}
+                      </Button>
+                    )}
+                  </div>
+                </div>
+              </SubmissionPopup>
+            </div>
+          ) : (
+            <div className={[styles.cart, styles.empty].join(' ')}>
+              <h2>
+                It Seems Like <strong>YOUR</strong> cart is empty 😕
+              </h2>
+
+              <p>
+                You probably haven't ordered a pizza yet.
+                <br />
+                To order a pizza, go to the home page.
+              </p>
+
+              <Image
+                src='/img/empty-cart.png'
+                width={360}
+                height={320}
+                alt='Empty cart'
+              />
+
+              <Button
+                href='/'
+                className={[styles.backButton, styles.blackButton].join(' ')}>
+                <svg
+                  width='7'
+                  height='12'
+                  viewBox='0 0 7 12'
+                  fill='none'
+                  xmlns='http://www.w3.org/2000/svg'>
+                  <path
+                    d='M6 11L1 5.94179L5.88479 1'
+                    stroke='#d3d3d3'
+                    strokeWidth='1.5'
+                    strokeLinecap='round'
+                    strokeLinejoin='round'
+                  />
+                </svg>
+
+                <span>Get Back</span>
+              </Button>
+            </div>
+          )}
+        </Container>
+      </div>
     </>
   )
 }
