@@ -30,7 +30,7 @@ const Button: React.FC<ButtonPropTypes> = (props): JSX.Element => {
   }
 
   return (
-    <Link href={href || '/'}>
+    <Link href={href || '/'} shallow={true}>
       <div onClick={onClick} className={classNames.join(' ')}>
         {children}
       </div>
