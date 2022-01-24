@@ -18,7 +18,7 @@ const Header: React.FC = (): JSX.Element => {
     <header className={styles.header}>
       <Container className={styles.container}>
         <div className={styles.left}>
-          <Link href='/'>
+          <Link href='/' shallow={true}>
             <div className={styles.logo}>
               <Image width='38' height='38' src='/img/pizza-logo.svg' alt='Pizza logo' />
 
